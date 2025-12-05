@@ -33,5 +33,6 @@
                 "url": "https://hibitsoft.ir/HiBitUninstaller/HiBitUninstaller-Portable-$version.zip"
             }
         }
-    }
+    },
+    "persist": "HiBitUninstaller"
 }
