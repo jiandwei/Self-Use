@@ -13,7 +13,7 @@
             "hash": "77E24FB420EB2B2C3B5814A17617BEB4D3126CC38D8C3729F2DAD91F6FC7BBEA"
         }
     },
-    "bin": "HiBitUninstaller.exe",
+    "bin": "HiBitUninstaller-Portable.exe",
     "shortcuts": [
         [
             "HiBitUninstaller.exe",
