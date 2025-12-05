@@ -6,11 +6,11 @@
     "architecture": {
         "64bit": {
             "url": "https://hibitsoft.ir/HiBitUninstaller/HiBitUninstaller-Portable-3.2.70.zip",
-            "hash": "sha25677E24FB420EB2B2C3B5814A17617BEB4D3126CC38D8C3729F2DAD91F6FC7BBEA"
+            "hash": "77E24FB420EB2B2C3B5814A17617BEB4D3126CC38D8C3729F2DAD91F6FC7BBEA"
         },
         "32bit": {
             "url": "https://hibitsoft.ir/HiBitUninstaller/HiBitUninstaller-Portable-3.2.70.zip",
-            "hash": "sha25677E24FB420EB2B2C3B5814A17617BEB4D3126CC38D8C3729F2DAD91F6FC7BBEA"
+            "hash": "77E24FB420EB2B2C3B5814A17617BEB4D3126CC38D8C3729F2DAD91F6FC7BBEA"
         }
     },
     "bin": "HiBitUninstaller.exe",
