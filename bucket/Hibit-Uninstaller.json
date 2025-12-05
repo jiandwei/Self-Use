@@ -16,7 +16,7 @@
     "bin": "HiBitUninstaller-Portable.exe",
     "shortcuts": [
         [
-            "HiBitUninstaller.exe",
+            "HiBitUninstaller-Portable.exe",
             "HiBit Uninstaller"
         ]
     ],
