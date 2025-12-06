@@ -1,13 +1,13 @@
 {
-    "version": "1.1.0+15",
+    "version": "1.1.3+18",
     "description": "A Flutter LLM Chat Client for Windows",
     "homepage": "https://github.com/Chevey339/kelivo",
     "license": "AGPL-3.0",
     "notes": "Kelivo is a multi-platform LLM chat client with support for OpenAI, Gemini, Claude and many other AI providers.",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Chevey339/kelivo/releases/download/v1.1.0/Kelivo_windows_1.1.0+15.zip",
-            "hash": "sha256:535b430249647949e03ef497fe94f70e0b206cf1450363a0a5fad777c2bd6433"
+            "url": "https://github.com/Chevey339/kelivo/releases/download/v1.1.3/Kelivo_windows_1.1.3+18.zip",
+            "hash": "sha256:TODO"
         }
     },
     "shortcuts": [
@@ -17,7 +17,8 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/Chevey339/kelivo"
+        "github": "https://github.com/Chevey339/kelivo",
+        "regex": "tag/v([\\d\\.]+\\+\\d+)"
     },
     "autoupdate": {
         "architecture": {
