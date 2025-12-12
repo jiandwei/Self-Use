@@ -9,44 +9,33 @@
             "hash": "sha256:2ac81e152b1c2e82ac684d615d2a173c833141199e6d28868628dd36e136aca1"
         }
     },
-    "pre_install": [
-        "Write-Host '正在使用7z解压安装程序...' -ForegroundColor Green",
-        "$null = New-Item \"$dir\\_tmp\" -ItemType Directory -Force",
-        "& '7z' x \"$fname\" -o\"$dir\\_tmp\" -y"
-    ],
+    "depends": "innounp",
     "installer": {
         "script": [
-            "Write-Host '正在提取程序文件...' -ForegroundColor Green",
-            "# 检查解压后的结构",
-            "$tmpDir = \"$dir\\_tmp\"",
-            "# 如果lumina-note是一个文件",
-            "if (Test-Path \"$tmpDir\\lumina-note\" -PathType Leaf) {",
-            "    Copy-Item \"$tmpDir\\lumina-note\" \"$dir\\lumina-note.exe\"",
-            "}",
-            "# 如果lumina-note是一个文件夹",
-            "if (Test-Path \"$tmpDir\\lumina-note\" -PathType Container) {",
-            "    # 查找主程序文件",
-            "    $exeFiles = Get-ChildItem \"$tmpDir\\lumina-note\" -Filter '*.exe' -Recurse",
-            "    foreach ($exe in $exeFiles) {",
-            "        # 通常主程序文件会包含lumina-note或类似名称",
-            "        if ($exe.Name -match 'lumina-note|LuminaNote|Lumina') {",
-            "            Copy-Item $exe.FullName \"$dir\\lumina-note.exe\"",
-            "            break",
-            "        }",
+            "Write-Host '使用InnoUnp解压安装程序...' -ForegroundColor Green",
+            "# 使用innounp解压",
+            "$installer = Get-ChildItem \"$dir\" -Filter '*.exe' | Select-Object -First 1",
+            "& \"$(scoop prefix innounp)\\innounp.exe\" -x -y -b -d\"$dir\" \"$($installer.FullName)\"",
+            "",
+            "# 清理安装程序文件",
+            "Remove-Item \"$dir\\*.exe\" -Force",
+            "",
+            "# 查找并重命名主程序文件",
+            "$exeFile = Get-ChildItem \"$dir\" -Filter '*.exe' -Recurse | Where-Object {",
+            "    $_.Name -notmatch 'uninstall|Uninst' -and $_.Name -match 'lumina'",
+            "} | Select-Object -First 1",
+            "",
+            "if ($exeFile) {",
+            "    if ($exeFile.Name -ne 'lumina-note.exe') {",
+            "        Rename-Item $exeFile.FullName \"lumina-note.exe\" -Force",
             "    }",
-            "    # 复制其他可能需要的文件",
-            "    Get-ChildItem \"$tmpDir\\lumina-note\" | ForEach-Object {",
-            "        if ($_.Name -notmatch 'uninstall|\\$PLUGINSDIR') {",
-            "            if ($_.PSIsContainer) {",
-            "                Copy-Item $_.FullName \"$dir\\$($_.Name)\" -Recurse",
-            "            } else {",
-            "                Copy-Item $_.FullName \"$dir\\$($_.Name)\"",
-            "            }",
-            "        }",
+            "} else {",
+            "    # 如果没有找到，尝试查找任何exe文件",
+            "    $exeFile = Get-ChildItem \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1",
+            "    if ($exeFile) {",
+            "        Rename-Item $exeFile.FullName \"lumina-note.exe\" -Force",
             "    }",
-            "}",
-            "# 清理临时目录",
-            "Remove-Item \"$dir\\_tmp\" -Recurse -Force"
+            "}"
         ]
     },
     "bin": "lumina-note.exe",
@@ -65,9 +54,5 @@
                 "url": "https://github.com/blueberrycongee/Lumina-Note/releases/download/v$version/lumina-note_$version_x64-setup.exe"
             }
         }
-    },
-    "notes": [
-        "解压后包含：uninstall, $PLUGINSDIR, lumina-note 三个项目",
-        "如果安装后无法运行，请检查解压后的文件结构并调整manifest"
-    ]
+    }
 }
