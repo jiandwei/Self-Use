@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/blueberrycongee/Lumina-Note/releases/download/v0.3.9/lumina-note_0.3.9_x64-setup.exe",
-            "hash": ""
+            "hash": "sha256:2ac81e152b1c2e82ac684d615d2a173c833141199e6d28868628dd36e136aca1"
         }
     },
     "pre_install": [
