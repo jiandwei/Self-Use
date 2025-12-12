@@ -1,0 +1,73 @@
+{
+    "version": "0.3.9",
+    "description": "Lumina Note - A lightweight note-taking application",
+    "homepage": "https://github.com/blueberrycongee/Lumina-Note",
+    "license": "Unknown",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/blueberrycongee/Lumina-Note/releases/download/v0.3.9/lumina-note_0.3.9_x64-setup.exe",
+            "hash": ""
+        }
+    },
+    "pre_install": [
+        "Write-Host '正在使用7z解压安装程序...' -ForegroundColor Green",
+        "$null = New-Item \"$dir\\_tmp\" -ItemType Directory -Force",
+        "& '7z' x \"$fname\" -o\"$dir\\_tmp\" -y"
+    ],
+    "installer": {
+        "script": [
+            "Write-Host '正在提取程序文件...' -ForegroundColor Green",
+            "# 检查解压后的结构",
+            "$tmpDir = \"$dir\\_tmp\"",
+            "# 如果lumina-note是一个文件",
+            "if (Test-Path \"$tmpDir\\lumina-note\" -PathType Leaf) {",
+            "    Copy-Item \"$tmpDir\\lumina-note\" \"$dir\\lumina-note.exe\"",
+            "}",
+            "# 如果lumina-note是一个文件夹",
+            "if (Test-Path \"$tmpDir\\lumina-note\" -PathType Container) {",
+            "    # 查找主程序文件",
+            "    $exeFiles = Get-ChildItem \"$tmpDir\\lumina-note\" -Filter '*.exe' -Recurse",
+            "    foreach ($exe in $exeFiles) {",
+            "        # 通常主程序文件会包含lumina-note或类似名称",
+            "        if ($exe.Name -match 'lumina-note|LuminaNote|Lumina') {",
+            "            Copy-Item $exe.FullName \"$dir\\lumina-note.exe\"",
+            "            break",
+            "        }",
+            "    }",
+            "    # 复制其他可能需要的文件",
+            "    Get-ChildItem \"$tmpDir\\lumina-note\" | ForEach-Object {",
+            "        if ($_.Name -notmatch 'uninstall|\\$PLUGINSDIR') {",
+            "            if ($_.PSIsContainer) {",
+            "                Copy-Item $_.FullName \"$dir\\$($_.Name)\" -Recurse",
+            "            } else {",
+            "                Copy-Item $_.FullName \"$dir\\$($_.Name)\"",
+            "            }",
+            "        }",
+            "    }",
+            "}",
+            "# 清理临时目录",
+            "Remove-Item \"$dir\\_tmp\" -Recurse -Force"
+        ]
+    },
+    "bin": "lumina-note.exe",
+    "shortcuts": [
+        [
+            "lumina-note.exe",
+            "Lumina Note"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/blueberrycongee/Lumina-Note"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/blueberrycongee/Lumina-Note/releases/download/v$version/lumina-note_$version_x64-setup.exe"
+            }
+        }
+    },
+    "notes": [
+        "解压后包含：uninstall, $PLUGINSDIR, lumina-note 三个项目",
+        "如果安装后无法运行，请检查解压后的文件结构并调整manifest"
+    ]
+}
