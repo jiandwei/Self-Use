@@ -14,7 +14,7 @@
         "bin\\emacs.exe",
         "bin\\emacsclient.exe",
         "bin\\emacsclientw.exe",
-        "bin\\etags. exe",
+        "bin\\etags.exe",
         "bin\\ctags.exe",
         [
             "bin\\emacsclientw.exe",
