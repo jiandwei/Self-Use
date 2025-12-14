@@ -1,2 +1,24 @@
-https://github.com/xstongxue/XS-VLM-OCR/releases/tag/1.0
-https://github.com/user-attachments/files/24147352/XS-VLM-OCR_v1.0_x64_green.zip
+{
+  "version": "1.0",
+  "description": "XS-VLM-OCR",
+  "homepage": "https://github.com/xstongxue/XS-VLM-OCR",
+  "license": "Unknown",
+  "url": "https://github.com/user-attachments/files/24147352/XS-VLM-OCR_v1.0_x64_green.zip",
+  "hash": "78E960F8771CCBF64D4FB9900288E61BEAFE539C851DC1E79EE22342C71B5568",
+  "extract_dir": "XS-VLM-OCR_v1.0_x64_green",
+  "shortcuts": [
+    [
+      "XS-VLM-OCR.exe",
+      "XS-VLM-OCR"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/xstongxue/XS-VLM-OCR/releases/latest",
+    "jsonpath": "$.tag_name",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://github.com/xstongxue/XS-VLM-OCR/releases/download/$version/XS-VLM-OCR_v$version_x64_green.zip",
+    "extract_dir": "XS-VLM-OCR_v$version_x64_green"
+  }
+}
