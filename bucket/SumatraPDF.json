@@ -1,1 +1,34 @@
-https://www.sumatrapdfreader.org/dl/rel/3.5.2/SumatraPDF-3.5.2-64.zip
+{
+    "version": "3.5.2",
+    "description": "PDF and eBook reader",
+    "homepage": "https://www.sumatrapdfreader.org/",
+    "license": "GPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.sumatrapdfreader. org/dl/rel/3.5.2/SumatraPDF-3.5.2-64.zip",
+            "hash": "sha256:8bb9c58c7c0d8c5c1fba5c0e2e1e2e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e"
+        }
+    },
+    "bin": "SumatraPDF.exe",
+    "shortcuts": [
+        [
+            "SumatraPDF.exe",
+            "SumatraPDF"
+        ]
+    ],
+    "persist": [
+        "sumatrapdfrestrict.ini",
+        "SumatraPDF-settings.txt"
+    ],
+    "checkver": {
+        "url": "https://www.sumatrapdfreader. org/download-free-pdf-viewer",
+        "regex": "SumatraPDF-([\\d. ]+)-64\\.zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit":  {
+                "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version-64.zip"
+            }
+        }
+    }
+}
