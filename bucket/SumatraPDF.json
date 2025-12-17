@@ -10,7 +10,7 @@
         }
     },
     "pre_install": [ "Get-ChildItem \"$dir\\SumatraPDF-*.exe\" | ForEach-Object { Rename-Item $_ \"$dir\\SumatraPDF.exe\" }" ],
-    "bin": "SumatraPD.exe",
+    "bin": "SumatraPDF.exe",
     "shortcuts": [
         [
             "SumatraPDF.exe",
