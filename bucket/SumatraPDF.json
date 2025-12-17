@@ -9,7 +9,7 @@
             "hash": "sha256:66CCB395C9184DCE6822DFBB9970C877383B3EAD6D9417B5106A844AAC512989"
         }
     },
-    "bin": "SumatraPDF.exe",
+    "bin": "SumatraPDF-$version.exe",
     "shortcuts": [
         [
             "SumatraPDF.exe",
