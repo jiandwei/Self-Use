@@ -5,8 +5,8 @@
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://www.sumatrapdfreader. org/dl/rel/3.5.2/SumatraPDF-3.5.2-64.zip",
-            "hash": "sha256:8bb9c58c7c0d8c5c1fba5c0e2e1e2e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e"
+            "url": "https://www.sumatrapdfreader.org/dl/rel/3.5.2/SumatraPDF-3.5.2-64.zip",
+            "hash": "sha256:66CCB395C9184DCE6822DFBB9970C877383B3EAD6D9417B5106A844AAC512989"
         }
     },
     "bin": "SumatraPDF.exe",
@@ -21,7 +21,7 @@
         "SumatraPDF-settings.txt"
     ],
     "checkver": {
-        "url": "https://www.sumatrapdfreader. org/download-free-pdf-viewer",
+        "url": "https://www.sumatrapdfreader.org/download-free-pdf-viewer",
         "regex": "SumatraPDF-([\\d. ]+)-64\\.zip"
     },
     "autoupdate": {
