@@ -9,7 +9,8 @@
             "hash": "sha256:66CCB395C9184DCE6822DFBB9970C877383B3EAD6D9417B5106A844AAC512989"
         }
     },
-    "bin": "SumatraPDF-$version.exe",
+    "pre_install": [ "Get-ChildItem \"$dir\\SumatraPDF-*.exe\" | ForEach-Object { Rename-Item $_ \"$dir\\SumatraPDF.exe\" }" ],
+    "bin": "SumatraPD.exe",
     "shortcuts": [
         [
             "SumatraPDF.exe",
