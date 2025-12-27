@@ -10,13 +10,15 @@
             "hash": "sha256:991e348a84090bf8a457cdea8e7655ed2e529381f15b85e04658b0571f248063"
         }
     },
-    "persist": "config",
-    "bin": "sing-box.exe",
+    "persist":  "config",
+    "bin":  "sing-box.exe",
     "checkver": {
-        "github": "https://github.com/jiandwei/sing-box"
+        "url": "https://api.github.com/repos/jiandwei/sing-box/releases/latest",
+        "jsonpath": "$.tag_name",
+        "regex": "v([\\d.]+-reF1nd)"
     },
     "autoupdate": {
-        "architecture": {
+        "architecture":  {
             "64bit": {
                 "url": "https://github.com/jiandwei/sing-box/releases/download/v$version-windows-amd64-build/sing-box-$version-windows-amd64.zip"
             }
