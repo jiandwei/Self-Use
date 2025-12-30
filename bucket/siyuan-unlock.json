@@ -1,13 +1,13 @@
 {
-    "version": "3.5.1",
+    "version": "3.5.2",
     "description": "Siyuan Unlock Tool - 思源笔记解锁工具",
     "homepage": "https://github.com/appdev/siyuan-unlock/releases",
     "license": {
         "identifier": "Unknown"
     },
     "depends": "7zip",
-    "url": "https://github.com/appdev/siyuan-unlock/releases/download/v3.5.1/siyuan-unlock-v3.5.1-win.exe#/dl.7z",
-    "hash": "53639fc004398e501d8df485bacf3eba0219606f497071257bc764a747043017",
+    "url": "https://github.com/appdev/siyuan-unlock/releases/download/v3.5.2/siyuan-unlock-v3.5.2-win.exe#/dl.7z",
+    "hash": "a92022cae1bd7caa08173eeb71e79726891ac7747130f7cba58c2e75a8f54613",
     "pre_install": [
         "7z x \"$dir\\`$PLUGINSDIR\\*.7z\" -o\"$dir\\`$PLUGINSDIR\\siyuan-unlock\"",
         "Remove-Item -R -Path $dir\\resources -ErrorAction SilentlyContinue",
