@@ -1,24 +1,28 @@
 {
   "version": "143.0.3650.96",
-  "description": "Microsoft Edge WebDriver (renamed to MicrosoftWebDriver.exe for legacy compatibility)",
+  "description": "Microsoft Edge WebDriver (renamed to MicrosoftWebDriver.exe for legacy Selenium compatibility)",
   "homepage": "https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/",
   "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "https://msedgedriver.microsoft.com/143.0.3650.96/edgedriver_win64.zip",
+      "url": "https://msedgedriver.azureedge.net/143.0.3650.96/edgedriver_win64.zip",
       "hash": "sha256:6af95f17d4109077b445120121abc3979db68f99b5eded362b92e400b84fd007"
     }
   },
-  "bin": "MicrosoftWebDriver.exe",
+  "extract_dir": "",
+  "bin": "msedgedriver.exe",
   "checkver": {
-    "url": "https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/",
-    "regex": "Stable Channel: Current version is <strong>([\\d.]+)</strong>"
+    "url": "https://msedgedriver.azureedge.net/LATEST_STABLE",
+    "regex": "([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://msedgedriver.microsoft.com/$version/edgedriver_win64.zip"
+        "url": "https://msedgedriver.azureedge.net/$version/edgedriver_win64.zip"
       }
+    },
+    "hash": {
+      "url": "$url.sha256"
     }
   },
   "post_install": [
