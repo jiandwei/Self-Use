@@ -5,7 +5,6 @@
     "license": "GPL-3.0",
     "url": "https://github.com/Eason0210/emacs-build/releases/download/1.4/emacs-31.0.50-6b8b55.zip",
     "hash": "d8d0e7f12e0609db145d55a82ff74d171c92d0ba462674194af7497038b83503",
-    "extract_dir": "emacs-31.0.50-6b8b55",
     "bin": [
         "bin\\runemacs.exe",
         "bin\\emacs.exe",
@@ -33,7 +32,6 @@
         "regex": "releases/download/([\\d.]+)/emacs-([\\d.]+-[a-f0-9]+)\\.zip"
     },
     "autoupdate": {
-        "url": "https://github.com/Eason0210/emacs-build/releases/download/$matchVersion/emacs-$matchEmacsVersion.zip",
-        "extract_dir": "emacs-$matchEmacsVersion"
+        "url": "https://github.com/Eason0210/emacs-build/releases/download/$matchVersion/emacs-$matchEmacsVersion.zip"
     }
 }
