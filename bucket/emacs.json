@@ -1,5 +1,5 @@
 {
-    "version": "31.0.50-6b8b55",
+    "version": "1.4",
     "description": "GNU Emacs text editor - Custom build by Eason0210 with IGC support",
     "homepage": "https://github.com/Eason0210/emacs-build",
     "license": "GPL-3.0",
@@ -7,23 +7,33 @@
     "hash": "d8d0e7f12e0609db145d55a82ff74d171c92d0ba462674194af7497038b83503",
     "extract_dir": "emacs-31.0.50-6b8b55",
     "bin": [
+        "bin\\runemacs.exe",
         "bin\\emacs.exe",
         "bin\\emacsclient.exe",
-        "bin\\ebrowse.exe",
-        "bin\\etags.exe",
-        "bin\\ctags.exe"
+        "bin\\emacsclientw.exe",
+        [
+            "bin\\emacsclientw.exe",
+            "emw",
+            "-c -n -a \"\""
+        ]
     ],
     "shortcuts": [
         [
             "bin\\runemacs.exe",
             "Emacs"
+        ],
+        [
+            "bin\\emacsclientw.exe",
+            "Emacs Client",
+            "-c -n -a \"\""
         ]
     ],
     "checkver": {
-        "url": "https://github.com/Eason0210/emacs-build/releases",
-        "regex": "emacs-([\\d.]+-[a-f0-9]+)\\.zip"
+        "url": "https://github.com/Eason0210/emacs-build/releases/latest",
+        "regex": "releases/download/([\\d.]+)/emacs-([\\d.]+-[a-f0-9]+)\\.zip"
     },
     "autoupdate": {
-        "url": "https://github.com/Eason0210/emacs-build/releases/download/$matchHead/emacs-$version.zip"
+        "url": "https://github.com/Eason0210/emacs-build/releases/download/$matchVersion/emacs-$matchEmacsVersion.zip",
+        "extract_dir": "emacs-$matchEmacsVersion"
     }
 }
