@@ -1,49 +1,29 @@
 {
-    "$schema": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
-    "homepage": "https://www.gnu.org/software/emacs/",
-    "license":  "GPL-3.0-only",
-    "version": "30.2",
-    "architecture":  {
-        "64bit": {
-            "url": "http://ftp.gnu.org/gnu/emacs/windows/emacs-30/emacs-30.2.zip",
-            "hash": "414d3a1a21147af257ebd98bdd15976fdcb5ed0563f6de89f76d4a4b5dad9c72"
-        }
-    },
+    "version": "31.0.50-6b8b55",
+    "description": "GNU Emacs text editor - Custom build by Eason0210 with IGC support",
+    "homepage": "https://github.com/Eason0210/emacs-build",
+    "license": "GPL-3.0",
+    "url": "https://github.com/Eason0210/emacs-build/releases/download/1.4/emacs-31.0.50-6b8b55.zip",
+    "hash": "d8d0e7f12e0609db145d55a82ff74d171c92d0ba462674194af7497038b83503",
+    "extract_dir": "emacs-31.0.50-6b8b55",
     "bin": [
-        "bin\\runemacs.exe",
         "bin\\emacs.exe",
         "bin\\emacsclient.exe",
-        "bin\\emacsclientw.exe",
+        "bin\\ebrowse.exe",
         "bin\\etags.exe",
-        "bin\\ctags.exe",
-        [
-            "bin\\emacsclientw.exe",
-            "emw",
-            "-c -n -a \"\""
-        ]
+        "bin\\ctags.exe"
     ],
-    "checkver": {
-        "url": "http://ftp.gnu.org/gnu/emacs/windows/emacs-$majorVersion/",
-        "re": "emacs-([\\d\\w.-]+).zip",
-        "reverse":  true
-    },
-    "depends": "zstd",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url":  "http://ftp.gnu.org/gnu/emacs/windows/emacs-$majorVersion/emacs-$version.zip"
-            }
-        }
-    },
-    "shortcuts":  [
+    "shortcuts": [
         [
             "bin\\runemacs.exe",
             "Emacs"
-        ],
-        [
-            "bin\\emacsclientw.exe",
-            "Emacs Client",
-            "-c -n -a \"\""
         ]
-    ]
+    ],
+    "checkver": {
+        "url": "https://github.com/Eason0210/emacs-build/releases",
+        "regex": "emacs-([\\d.]+-[a-f0-9]+)\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/Eason0210/emacs-build/releases/download/$matchHead/emacs-$version.zip"
+    }
 }
