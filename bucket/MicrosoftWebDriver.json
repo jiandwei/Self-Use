@@ -1,0 +1,27 @@
+{
+  "version": "143.0.3650.96",
+  "description": "Microsoft Edge WebDriver (renamed to MicrosoftWebDriver.exe for legacy compatibility)",
+  "homepage": "https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://msedgedriver.microsoft.com/143.0.3650.96/edgedriver_win64.zip",
+      "hash": "sha256:计算当前文件的SHA256并替换此处（可选，但推荐）"
+    }
+  },
+  "bin": "MicrosoftWebDriver.exe",
+  "checkver": {
+    "url": "https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/",
+    "regex": "Stable Channel: Current version is <strong>([\\d.]+)</strong>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://msedgedriver.microsoft.com/$version/edgedriver_win64.zip"
+      }
+    }
+  },
+  "post_install": [
+    "Rename-Item \"$dir\\msedgedriver.exe\" \"$dir\\MicrosoftWebDriver.exe\""
+  ]
+}
