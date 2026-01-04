@@ -1,12 +1,12 @@
 {
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Lumina Note - A lightweight note-taking application",
     "homepage": "https://github.com/blueberrycongee/Lumina-Note",
     "license": "Unknown",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/blueberrycongee/Lumina-Note/releases/download/v0.4.0/lumina-note_0.4.0_x64-setup.exe",
-            "hash": "8b60a845bed04c7b2c8463787d5bde68e1a3d6893bc1dfe60734cc0859e4a5cf"
+            "url": "https://github.com/blueberrycongee/Lumina-Note/releases/download/v0.4.1/lumina-note_0.4.1_x64-setup.exe",
+            "hash": "1974f8551621cf5ba611c31b4903afa46ce12a40e87ea47bf17aa6e00171e519"
         }
     },
     "pre_install": [
