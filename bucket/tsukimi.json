@@ -1,0 +1,36 @@
+{
+    "version": "0.21.0",
+    "description": "A simple third-party Jellyfin client.",
+    "homepage": "https://github.com/tsukinaha/tsukimi",
+    "license": {
+        "identifier": "GPL-3.0-or-later",
+        "url": "https://github.com/tsukinaha/tsukimi/blob/HEAD/LICENSE"
+    },
+    "notes": [
+        "Starting from version 0.20.0, the upstream project no longer provides Windows packages in the GitHub releases.",
+        "Version 0.19.4 is the last stable Windows release, though full functionality is not guaranteed.",
+        "Users seeking a stable Jellyfin client on Windows should consider alternative solutions."
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/Kosette/tsukimi/releases/download/v0.21.0/tsukimi-x86_64-windows-gnu.7z",
+            "hash": "sha256:41e03f8c34160e493e75505a0e980e13d34c714eaea6bf40cccd083a577b3fd5"
+        }
+    },
+    "shortcuts": [
+        [
+            "bin\\tsukimi.exe",
+            "Tsukimi"
+        ]
+    ],
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/Kosette/tsukimi/releases/download/v$version/tsukimi-x86_64-windows-gnu.7z"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/tsukimi.sha512sum"
+        }
+    }
+}
