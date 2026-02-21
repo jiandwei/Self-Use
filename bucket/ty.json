@@ -1,12 +1,12 @@
 {
-    "version": "0.0.17",
+    "version": "0.0.18",
     "description": "An extremely fast Python type checker written in Rust",
     "homepage": "https://github.com/astral-sh/ty",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/astral-sh/ty/releases/download/0.0.17/ty-x86_64-pc-windows-msvc.zip",
-            "hash": "d8fe119de2a21c72fd345e640625c9e277418c3ebaf9b0548367d2d4e0b2cb41",
+            "url": "https://github.com/astral-sh/ty/releases/download/0.0.18/ty-x86_64-pc-windows-msvc.zip",
+            "hash": "fb57f9750530dc99e9270d6f5ccec54fa617f87aada0466c8233bcbc718dc482",
             "bin": "ty.exe"
         }
     },
