@@ -1,14 +1,14 @@
 {
-    "version": "1.12.21-reF1nd",
+    "version": "1.13.0-reF1nd",
     "description": "A custom build of sing-box, a universal proxy platform",
     "homepage": "https://github.com/jiandwei/sing-box",
     "license": "GPL-3.0",
     "notes": "This is a custom build of sing-box (reF1nd build). Configuration files should be placed in the $persist_dir\\config directory. Example: 'sing-box run -c $persist_dir\\config\\config.json'",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jiandwei/sing-box/releases/download/v1.12.21-reF1nd-windows-amd64-build/sing-box-1.12.21-reF1nd-windows-amd64.zip",
-            "hash": "64f8c0f519d232c5ddcdf60e91fc142ed2f8bc45f537232af46e17970299163c",
-            "extract_dir": "sing-box-1.12.21-reF1nd-windows-amd64"
+            "url": "https://github.com/jiandwei/sing-box/releases/download/v1.13.0-reF1nd-windows-amd64-build/sing-box-1.13.0-reF1nd-windows-amd64.zip",
+            "hash": "218e6c55ed1a0f8779fab87b5a584db401577a865ca75cd0ad348250d3bb7310",
+            "extract_dir": "sing-box-1.13.0-reF1nd-windows-amd64"
         }
     },
     "persist": "config",
