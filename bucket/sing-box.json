@@ -15,6 +15,7 @@
         "url": "https://api.github.com/repos/DustinWin/proxy-tools/releases/latest",
         "regex": "sing-box-ref1nd-stable-windows-amd64-v([\\d]+)\\.exe"
     },
+    "persist":"config",
     "autoupdate": {
         "architecture": {
             "64bit": {
