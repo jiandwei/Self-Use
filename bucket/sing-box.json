@@ -12,14 +12,16 @@
         }
     },
     "checkver": {
-        "url": "https://api.github.com/repos/DustinWin/proxy-tools/releases/latest",
-        "regex": "sing-box-ref1nd-stable-windows-amd64-v([\\d]+)\\.exe"
+        "url": "https://api.github.com/repos/DustinWin/proxy-tools/releases/tags/sing-box",
+        "regex": "sing-box-ref1nd-stable-windows-amd64-v([\\d]+)\\.exe",
+        "reverse": true
     },
-    "persist":"config",
+    "persist": "config",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v$version.exe"
+                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v$version.exe",
+                "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v$version.exe\" 'sing-box.exe'"
             }
         }
     }
