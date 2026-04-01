@@ -13,8 +13,8 @@
     },
     "checkver": {
         "url": "https://api.github.com/repos/DustinWin/proxy-tools/releases/tags/sing-box",
-        "regex": "sing-box-ref1nd-stable-windows-amd64-v([\\d]+)\\.exe",
-        "reverse": true
+        "jsonpath": "$.assets[?(@.name =~ /sing-box-ref1nd-stable-windows-amd64-v\\d+\\.exe/)].name",
+        "regex": "v(\\d+)"
     },
     "persist": "config",
     "autoupdate": {
