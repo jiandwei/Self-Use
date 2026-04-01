@@ -1,12 +1,12 @@
 {
-    "version": "1.26.2",
+    "version": "1.26.3",
     "description": "Sparkle - A proxy client (based on the URL pattern, likely a Clash/Mihomo GUI or core)",
     "homepage": "https://github.com/xishang0128/sparkle",
     "license": "Unknown",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/xishang0128/sparkle/releases/download/1.26.2/sparkle-windows-1.26.2-x64-portable.7z",
-            "hash": "sha256:656dc511a3e5980c0c4e7ab63988f34d6055eab027dc23ee984341c87b1cdca3"
+            "url": "https://github.com/xishang0128/sparkle/releases/download/1.26.3/sparkle-windows-1.26.3-x64-portable.7z",
+            "hash": "f55034953098357a8cfb0e9b04815bd7b370087ee74de7a1a9ac03a6087a284a"
         }
     },
     "extract_dir": "sparkle-windows-1.26.2-x64-portable",
