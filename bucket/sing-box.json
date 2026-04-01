@@ -1,27 +1,26 @@
 {
-    "version": "1",
+    "version": "1.13.5-reF1nd",
     "description": "sing-box with ref1nd GUI - A universal proxy platform",
     "homepage": "https://github.com/DustinWin/proxy-tools",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v1.exe",
-            "hash": "be9502a675f7b30d5e41372b4f6620d24e252ef12c6f0b6bd3dcee61fa2ee68b",
+            "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe",
+            "hash": "sha256:a76976397942e3f6a2c8ce05074e70c773ad583737b5b883a4fe9d9d581d1efe",
             "bin": "sing-box.exe",
-            "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v1.exe\" 'sing-box.exe'"
+            "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v3.exe\" 'sing-box.exe'"
         }
     },
     "checkver": {
-        "url": "https://api.github.com/repos/DustinWin/proxy-tools/releases/tags/sing-box",
-        "jsonpath": "$.assets[?(@.name =~ /sing-box-ref1nd-stable-windows-amd64-v\\d+\\.exe/)].name",
-        "regex": "v(\\d+)"
+        "url": "https://github.com/DustinWin/proxy-tools/releases/tag/sing-box",
+        "regex": "reF1nd-Stable 版.*?至 v(\\d+\\.\\d+\\.\\d+-reF1nd)"
     },
     "persist": "config",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v$version.exe",
-                "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v$version.exe\" 'sing-box.exe'"
+                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe",
+                "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v3.exe\" 'sing-box.exe'"
             }
         }
     }
