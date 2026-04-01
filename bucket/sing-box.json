@@ -19,8 +19,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe",
-                "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v3.exe\" 'sing-box.exe'"
+                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe"
             }
         }
     }
