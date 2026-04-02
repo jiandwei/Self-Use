@@ -13,7 +13,8 @@
     },
     "checkver": {
         "url": "https://github.com/DustinWin/proxy-tools/releases/tag/sing-box",
-        "regex": "reF1nd-Stable 版.*?至 v(\\d+\\.\\d+\\.\\d+-reF1nd)"
+        "regex": "reF1nd-Stable 版.*?至 v(\\d+\\.\\d+\\.\\d+-reF1nd)",
+        "reverse": true
     },
     "persist": "config",
     "autoupdate": {
