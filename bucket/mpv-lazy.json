@@ -11,7 +11,7 @@
     },
     "extract_dir": "mpv-lazy",
     "bin": [
-        "mpv.exe",
+        "mpv.exe"
     ],
    "persist": "portable_config",
     "shortcuts": [
