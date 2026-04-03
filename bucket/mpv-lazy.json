@@ -16,8 +16,7 @@
    "persist": "portable_config",
     "shortcuts": [
         [
-            "mpv-lazy.exe",
-            "mpv-lazy"
+            "mpv.exe"
         ]
     ],
     "checkver": {
