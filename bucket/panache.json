@@ -1,0 +1,24 @@
+{
+    "version": "2.33.1",
+    "description": "Language server, formatter, and linter for Pandoc, Quarto, and R Markdown",
+    "homepage": "https://github.com/jolars/panache",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/jolars/panache/releases/download/panache-v2.33.1/panache-x86_64-pc-windows-msvc.zip",
+            "hash": "5bbc96af4e4e7ac1ed7b9848f54a49b3671aaef99d9ed59a65bae2c6d14cc608"
+        }
+    },
+    "bin": "panache.exe",
+    "checkver": {
+        "url": "https://github.com/jolars/panache/releases/latest",
+        "regex": "panache-v([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/jolars/panache/releases/download/panache-v$version/panache-x86_64-pc-windows-msvc.zip"
+            }
+        }
+    }
+}
