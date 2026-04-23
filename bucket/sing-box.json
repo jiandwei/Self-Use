@@ -1,12 +1,12 @@
 {
-    "version": "1.13.10-reF1nd",
+    "version": "1.13.11-reF1nd",
     "description": "sing-box with ref1nd GUI - A universal proxy platform",
     "homepage": "https://github.com/DustinWin/proxy-tools",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
             "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe",
-            "hash": "d153c9cf7db723ead9ce80ea76b89a8ff9e2745737b32be8726a8cf23b97a53b",
+            "hash": "7a50be5fafc38994f829cd07aef47cc88f0c8992079fa76ca6923e3d8cac0583",
             "bin": "sing-box.exe",
             "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v3.exe\" 'sing-box.exe'"
         }
