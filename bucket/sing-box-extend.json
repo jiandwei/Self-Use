@@ -1,0 +1,26 @@
+{
+    "version": "1.13.11-extended-2.1.0",
+    "description": "sing-box with extended features - A universal proxy platform",
+    "homepage": "https://github.com/shtorm-7/sing-box-extended",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/shtorm-7/sing-box-extended/releases/download/v1.13.11-extended-2.1.0/sing-box-1.13.11-extended-2.1.0-windows-amd64.zip",
+            "hash": "eee17b34245a8375a9fa264bf338c914e44be4c1a63e8a78ef5f0dc265d95aaf",
+            "extract_dir": "sing-box-1.13.11-extended-2.1.0-windows-amd64",
+            "bin": "sing-box.exe"
+        }
+    },
+    "persist": "config",
+    "checkver": {
+        "github": "https://github.com/shtorm-7/sing-box-extended"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/shtorm-7/sing-box-extended/releases/download/v$version/sing-box-$version-windows-amd64.zip",
+                "extract_dir": "sing-box-$version-windows-amd64"
+            }
+        }
+    }
+}
