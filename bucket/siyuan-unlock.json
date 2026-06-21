@@ -1,13 +1,13 @@
 {
-    "version": "3.6.0",
+    "version": "3.6.5",
     "description": "Siyuan Unlock Tool - 思源笔记解锁工具",
     "homepage": "https://github.com/appdev/siyuan-unlock/releases",
     "license": {
         "identifier": "Unknown"
     },
     "depends": "7zip",
-    "url": "https://github.com/appdev/siyuan-unlock/releases/download/v3.6.0/siyuan-v3.6.0-win.exe#/dl.7z",
-    "hash": "b586d463a58657b402fa858e3864a581a33bdd0c90323c65df708b1969b2303a",
+    "url": "https://github.com/appdev/siyuan-unlock/releases/download/v3.6.5/siyuan-3.6.5-win.exe#/dl.7z",
+    "hash": "b0ac6eb930071f6c0465db5cdb7f971a89f40d5f9f001e96f049904302e8f4e0",
     "pre_install": [
         "7z x \"$dir\\`$PLUGINSDIR\\*.7z\" -o\"$dir\\`$PLUGINSDIR\\siyuan-unlock\"",
         "Remove-Item -R -Path $dir\\resources -ErrorAction SilentlyContinue",
@@ -26,10 +26,11 @@
         ]
     ],
     "checkver": {
-        "url": "https://github.com/appdev/siyuan-unlock/releases",
-        "regex": "/releases/tag/v(?<version>[\\d.]+)\""
+        "url": "https://api.github.com/repos/appdev/siyuan-unlock/releases/latest",
+        "jsonpath": "$.tag_name",
+        "regex": "v([\\d.]+)"
     },
     "autoupdate": {
-        "url": "https://github.com/appdev/siyuan-unlock/releases/download/v$version/siyuan-unlock-v$version-win.exe#/dl.7z"
+        "url": "https://github.com/appdev/siyuan-unlock/releases/download/v$version/siyuan-$version-win.exe#/dl.7z"
     }
 }
