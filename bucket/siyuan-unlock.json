@@ -7,7 +7,7 @@
     },
     "depends": "7zip",
     "url": "https://github.com/appdev/siyuan-unlock/releases/download/v3.6.5/siyuan-3.6.5-win.exe#/dl.7z",
-    "hash": "b0ac6eb930071f6c0465db5cdb7f971a89f40d5f9f001e96f049904302e8f4e0",
+    "hash": "82a37c2025acae57c9f944647dc7b260e26022221f92737e4ffebfa9fe509252",
     "pre_install": [
         "7z x \"$dir\\`$PLUGINSDIR\\*.7z\" -o\"$dir\\`$PLUGINSDIR\\siyuan-unlock\"",
         "Remove-Item -R -Path $dir\\resources -ErrorAction SilentlyContinue",
