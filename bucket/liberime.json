@@ -5,8 +5,8 @@
     "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/emacs-rime/liberime/releases/download/v0.0.10/liberime-v0.0.10-windows-clang-x86_64-with-deps.zip",
-            "hash": "sha256:a440a2ce1cccd1620a9560d79a060024ce82733301f439289ac73e484b34cb53"
+            "url": "https://github.com/emacs-rime/liberime/releases/download/v0.0.10/liberime-v0.0.10-windows-ucrt-x86_64-with-deps.zip",
+            "hash": "sha256:8efd2fd8bfadca4899249f42bf7d915fee4064a73668eec2ccec175e7e7ea3e8"
         }
     },
     "env_add_path": "bin",
@@ -16,7 +16,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/emacs-rime/liberime/releases/download/v$version/liberime-v$version-windows-clang-x86_64-with-deps.zip"
+                "url": "https://github.com/emacs-rime/liberime/releases/download/v$version/liberime-v$version-windows-ucrt-x86_64-with-deps.zip"
             }
         }
     }
