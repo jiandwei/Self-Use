@@ -1,0 +1,23 @@
+{
+    "version": "0.0.10",
+    "description": "A Emacs dynamic module providing librime bindings",
+    "homepage": "https://github.com/emacs-rime/liberime",
+    "license": "GPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/emacs-rime/liberime/releases/download/v0.0.10/liberime-v0.0.10-windows-clang-x86_64-with-deps.zip",
+            "hash": "sha256:a440a2ce1cccd1620a9560d79a060024ce82733301f439289ac73e484b34cb53"
+        }
+    },
+    "env_add_path": "bin",
+    "checkver": {
+        "github": "https://github.com/emacs-rime/liberime"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/emacs-rime/liberime/releases/download/v$version/liberime-v$version-windows-clang-x86_64-with-deps.zip"
+            }
+        }
+    }
+}
