@@ -1,26 +1,28 @@
 {
-    "version": "1.13.14-reF1nd",
+    "version": "1.13.14-reF1nd.1",
     "description": "sing-box with ref1nd GUI - A universal proxy platform",
     "homepage": "https://github.com/DustinWin/proxy-tools",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe",
-            "hash": "12c557a3f373409f880418c75691efd14b7a05e25e6f5c67121881107d2cf23f",
-            "bin": "sing-box.exe",
-            "pre_install": "Rename-Item \"$dir\\sing-box-ref1nd-stable-windows-amd64-v3.exe\" 'sing-box.exe'"
+            "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v1.13.14-reF1nd.1/sing-box-1.13.14-reF1nd.1-windows-amd64v3.zip",
+            "hash": "965ef73eaa359e55fa38e83f798de586d471c8ef58286805fbeea241add7272e",
+            "extract_dir": "sing-box-1.13.14-reF1nd.1-windows-amd64v3",
+            "bin": "sing-box-1.13.14-reF1nd.1-windows-amd64v3\\sing-box.exe"
         }
     },
     "checkver": {
-        "url": "https://github.com/DustinWin/proxy-tools/releases/tag/sing-box",
-        "regex": "reF1nd-Stable 版.*?至 v(\\d+\\.\\d+\\.\\d+-reF1nd)",
+        "url": "https://github.com/reF1nd/sing-box-releases/releases",
+        "regex": "/releases\\/tag\\/v([\\d.]+-reF1nd(?:\\.\\d+)?)/",
         "reverse": true
     },
     "persist": "config",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/DustinWin/proxy-tools/releases/download/sing-box/sing-box-ref1nd-stable-windows-amd64-v3.exe"
+                "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v$version/sing-box-$version-windows-amd64v3.zip",
+                "extract_dir": "sing-box-$version-windows-amd64v3",
+                "bin": "sing-box-$version-windows-amd64v3\\sing-box.exe"
             }
         }
     }
