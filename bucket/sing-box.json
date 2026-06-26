@@ -8,7 +8,7 @@
             "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v1.13.14-reF1nd.1/sing-box-1.13.14-reF1nd.1-windows-amd64v3.zip",
             "hash": "965ef73eaa359e55fa38e83f798de586d471c8ef58286805fbeea241add7272e",
             "extract_dir": "sing-box-1.13.14-reF1nd.1-windows-amd64v3",
-            "bin": "sing-box-1.13.14-reF1nd.1-windows-amd64v3\\sing-box.exe"
+            "bin": "sing-box.exe"
         }
     },
     "checkver": {
@@ -22,7 +22,7 @@
             "64bit": {
                 "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v$version/sing-box-$version-windows-amd64v3.zip",
                 "extract_dir": "sing-box-$version-windows-amd64v3",
-                "bin": "sing-box-$version-windows-amd64v3\\sing-box.exe"
+                "bin": "sing-box.exe"
             }
         }
     }
