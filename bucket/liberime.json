@@ -1,12 +1,12 @@
 {
-    "version": "0.0.10",
+    "version": "0.0.10.1",
     "description": "A Emacs dynamic module providing librime bindings",
     "homepage": "https://github.com/emacs-rime/liberime",
     "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/emacs-rime/liberime/releases/download/v0.0.10/liberime-v0.0.10-windows-ucrt-x86_64-with-deps.zip",
-            "hash": "sha256:8efd2fd8bfadca4899249f42bf7d915fee4064a73668eec2ccec175e7e7ea3e8"
+            "url": "https://github.com/emacs-rime/liberime/releases/download/v0.0.10.1/liberime-v0.0.10.1-windows-ucrt-x86_64-with-deps.zip",
+            "hash": "341d4da3364cc2011186b7aba4d16cec1b3b09eb980c1a710a76f7a95303ec12"
         }
     },
     "env_add_path": "bin",
