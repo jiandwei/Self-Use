@@ -1,23 +1,20 @@
 {
-    "version": "1.14.0-reF1nd.1",
+    "version": "1.14.1-reF1nd",
     "description": "sing-box reF1nd build",
     "homepage": "https://github.com/reF1nd/sing-box-releases",
     "license": "GPL-3.0-or-later",
-
     "architecture": {
         "64bit": {
-            "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v1.14.0-reF1nd.1/sing-box-1.14.0-reF1nd.1-windows-amd64v3.zip",
-            "hash": "4b72e605d735e8380701cc16cc41bf64833be3ffe3c3de4d299103a65de41032",
-            "extract_dir": "sing-box-1.14.0-reF1nd.1-windows-amd64v3"
+            "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v1.14.1-reF1nd/sing-box-1.14.1-reF1nd-windows-amd64v3.zip",
+            "hash": "bbebd4fae9faac2081d260b424bc88fe6659b92c2d201d789eb72bbc898810d0",
+            "extract_dir": "sing-box-1.14.1-reF1nd-windows-amd64v3"
         }
     },
-
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\config\")) {",
         "    New-Item -ItemType Directory -Path \"$persist_dir\\config\" -Force | Out-Null",
         "}"
     ],
-
     "post_install": [
         "$ruleName = 'sing-box Scoop'",
         "$exePath = \"$original_dir\\sing-box.exe\"",
@@ -27,22 +24,17 @@
         "\"@",
         "Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', $script"
     ],
-
     "pre_uninstall": [
         "$ruleName = 'sing-box Scoop'",
         "$script = \"Get-NetFirewallRule -DisplayName '$ruleName' -ErrorAction SilentlyContinue | Remove-NetFirewallRule -ErrorAction SilentlyContinue\"",
         "Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', $script"
     ],
-
     "bin": "sing-box.exe",
-
     "persist": "config",
-
     "checkver": {
         "github": "https://github.com/reF1nd/sing-box-releases",
         "regex": "/releases/tag/v(?<version>\\d+\\.\\d+\\.\\d+-reF1nd(?:\\.\\d+)?)"
     },
-
     "autoupdate": {
         "architecture": {
             "64bit": {
