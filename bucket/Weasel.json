@@ -1,19 +1,15 @@
 {
-    "version": "0.17.4.92.4e1206f",
+    "version": "0.17.4.89.db99554",
     "description": "Weasel (小狼毫) - fxliang Personal Build",
     "homepage": "https://github.com/fxliang/weasel",
     "license": "GPL-3.0-or-later",
-
-    "url": "https://github.com/fxliang/weasel/releases/download/pblatest/weasel-0.17.4.92.4e1206f-installer.exe#/weasel-installer.exe",
-    "hash": "c2669ca6f223184fd682e3b6e75ad71910e0d7cd26d66eb800d5937d9d8b6023",
-
+    "url": "https://github.com/fxliang/weasel/releases/download/pblatest/weasel-0.17.4.89.db99554-installer.exe#/weasel-installer.exe",
+    "hash": "4667ae221ae18116f69e62278e1ed9e891556580c94841895edc9f4fe519ce1a",
     "installer": {
         "script": [
             "$installer = Join-Path $dir 'weasel-installer.exe'",
             "$tmpInstaller = Join-Path $env:TEMP ('weasel-' + [guid]::NewGuid().ToString('N') + '.exe')",
-
             "Copy-Item -LiteralPath $installer -Destination $tmpInstaller -Force",
-
             "try {",
             "    $arguments = '/S /D=' + $dir",
             "    $process = Start-Process -FilePath $tmpInstaller -ArgumentList $arguments -Verb RunAs -PassThru -Wait",
@@ -25,25 +21,17 @@
             "}"
         ]
     },
-
-    "persist": [
-        "Rime"
-    ],
-
+    "persist": "Rime",
     "post_install": [
         "$userDir = Join-Path $dir 'Rime'",
-
         "if (-not (Test-Path $userDir)) {",
         "    throw \"Scoop persist junction was not created: $userDir\"",
         "}",
-
         "$regPaths = @(",
         "    'HKLM:\\SOFTWARE\\Rime\\Weasel',",
         "    'HKLM:\\SOFTWARE\\WOW6432Node\\Rime\\Weasel'",
         ")",
-
         "$weaselRoot = $null",
-
         "foreach ($regPath in $regPaths) {",
         "    if (Test-Path $regPath) {",
         "        $candidate = (Get-ItemProperty -Path $regPath -ErrorAction SilentlyContinue).WeaselRoot",
@@ -53,27 +41,22 @@
         "        }",
         "    }",
         "}",
-
         "if (-not $weaselRoot) {",
         "    throw 'Weasel installation directory not found in registry.'",
         "}",
-
         "$server = Join-Path $weaselRoot 'WeaselServer.exe'",
         "if (Test-Path $server) {",
         "    & $server '/quit' | Out-Null",
         "    Start-Sleep -Milliseconds 500",
         "}",
-
         "$setup = Join-Path $weaselRoot 'WeaselSetup.exe'",
         "if (-not (Test-Path $setup)) {",
         "    throw \"WeaselSetup.exe not found: $setup\"",
         "}",
-
         "$process = Start-Process -FilePath $setup -ArgumentList ('/userdir:' + $userDir) -PassThru -Wait",
         "if ($process.ExitCode -ne 0) {",
         "    throw \"WeaselSetup failed with exit code $($process.ExitCode)\"",
         "}",
-
         "$deployer = Join-Path $weaselRoot 'WeaselDeployer.exe'",
         "if (Test-Path $deployer) {",
         "    $process = Start-Process -FilePath $deployer -ArgumentList '/deploy' -WorkingDirectory $weaselRoot -PassThru -Wait",
@@ -81,24 +64,19 @@
         "        throw \"Weasel deploy failed with exit code $($process.ExitCode)\"",
         "    }",
         "}",
-
         "if (Test-Path $server) {",
         "    Start-Process -FilePath $server -WorkingDirectory $weaselRoot",
         "}",
-
         "Write-Host \"Rime user directory: $userDir\"",
         "Write-Host \"Rime persisted data: $(Join-Path $persist_dir 'Rime')\""
     ],
-
     "uninstaller": {
         "script": [
             "$regPaths = @(",
             "    'HKLM:\\SOFTWARE\\Rime\\Weasel',",
             "    'HKLM:\\SOFTWARE\\WOW6432Node\\Rime\\Weasel'",
             ")",
-
             "$weaselRoot = $null",
-
             "foreach ($regPath in $regPaths) {",
             "    if (Test-Path $regPath) {",
             "        $candidate = (Get-ItemProperty -Path $regPath -ErrorAction SilentlyContinue).WeaselRoot",
@@ -108,14 +86,12 @@
             "        }",
             "    }",
             "}",
-
             "if ($weaselRoot) {",
             "    $server = Join-Path $weaselRoot 'WeaselServer.exe'",
             "    if (Test-Path $server) {",
             "        & $server '/quit' | Out-Null",
             "        Start-Sleep -Milliseconds 500",
             "    }",
-
             "    $uninstaller = Join-Path $weaselRoot 'uninstall.exe'",
             "    if (Test-Path $uninstaller) {",
             "        $process = Start-Process -FilePath $uninstaller -ArgumentList '/S' -Verb RunAs -PassThru -Wait",
@@ -126,12 +102,10 @@
             "}"
         ]
     },
-
     "checkver": {
         "url": "https://api.github.com/repos/fxliang/weasel/releases/tags/pblatest",
         "regex": "weasel-(?<version>[\\d.]+\\.[0-9a-f]+)-installer\\.exe"
     },
-
     "autoupdate": {
         "url": "https://github.com/fxliang/weasel/releases/download/pblatest/weasel-$version-installer.exe#/weasel-installer.exe"
     }
