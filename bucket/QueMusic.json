@@ -1,0 +1,61 @@
+{
+    "version": "0.5.1-Beta",
+    "description": "基于 C++/Qt/QML 构建的现代跨平台音乐播放器（Beta）",
+    "homepage": "https://github.com/BroNekoX/QueMusic",
+    "license": "Apache-2.0",
+    "url": "https://github.com/BroNekoX/QueMusic/releases/download/v0.5.1-Beta/QueMusic0.5.1Windows.zip",
+    "hash": "e3e7fe2c5332ab8e08f0d55e666253fff07e8ce8d61a8ea7119126509a7d0f2e",
+    "pre_install": [
+        "$exe = Get-ChildItem -Path $dir -Filter 'QueMusic.exe' -File -Recurse | Select-Object -First 1",
+        "if (!$exe) { throw 'QueMusic.exe was not found in the release archive.' }",
+        "if ($exe.Directory.FullName -ne $dir) { $src = $exe.Directory.FullName; Get-ChildItem -LiteralPath $src -Force | Move-Item -Destination $dir -Force; Remove-Item -LiteralPath $src -Recurse -Force -ErrorAction SilentlyContinue }",
+        "New-Item -ItemType Directory -Force -Path \"$dir\\.scoop-appdata\", \"$dir\\.scoop-config\" | Out-Null"
+    ],
+    "persist": [
+        [
+            ".scoop-appdata",
+            "appdata"
+        ],
+        [
+            ".scoop-config",
+            "config"
+        ]
+    ],
+    "post_install": [
+        "function Mount-QueMusicPersist([string]$Path, [string]$Target) {",
+        "    New-Item -ItemType Directory -Force -Path $Target | Out-Null",
+        "    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $Path) | Out-Null",
+        "    if (Test-Path -LiteralPath $Path) {",
+        "        $item = Get-Item -LiteralPath $Path -Force",
+        "        if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) {",
+        "            Remove-Item -LiteralPath $Path -Force",
+        "        } else {",
+        "            Get-ChildItem -LiteralPath $Path -Force | Copy-Item -Destination $Target -Recurse -Force",
+        "            Remove-Item -LiteralPath $Path -Recurse -Force",
+        "        }",
+        "    }",
+        "    New-Item -ItemType Junction -Path $Path -Target $Target | Out-Null",
+        "}",
+        "$roamingPath = Join-Path $env:APPDATA 'BroNekoX\\QueMusic'",
+        "$localConfigPath = Join-Path $env:LOCALAPPDATA 'BroNekoX'",
+        "Mount-QueMusicPersist $roamingPath (Join-Path $persist_dir 'appdata')",
+        "Mount-QueMusicPersist $localConfigPath (Join-Path $persist_dir 'config')"
+    ],
+    "pre_uninstall": [
+        "$paths = @((Join-Path $env:APPDATA 'BroNekoX\\QueMusic'), (Join-Path $env:LOCALAPPDATA 'BroNekoX'))",
+        "foreach ($path in $paths) { if (Test-Path -LiteralPath $path) { $item = Get-Item -LiteralPath $path -Force; if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) { Remove-Item -LiteralPath $path -Force } } }",
+        "Remove-Item -LiteralPath (Join-Path $env:APPDATA 'Microsoft\\Windows\\Start Menu\\Programs\\QueMusic.lnk') -Force -ErrorAction SilentlyContinue",
+        "Remove-Item -LiteralPath 'HKCU:\\Software\\Classes\\AppUserModelId\\BroNekoX.QueMusic' -Recurse -Force -ErrorAction SilentlyContinue"
+    ],
+    "bin": "QueMusic.exe",
+    "shortcuts": [
+        [
+            "QueMusic.exe",
+            "QueMusic"
+        ]
+    ],
+    "notes": [
+        "QueMusic 的数据库/日志位于 Roaming AppData，设置位于 Local AppData。",
+        "本 manifest 会把这些目录 junction 到 Scoop persist，因此 scoop update / uninstall 后数据仍保留；使用 scoop uninstall -p quemusic 可一并清除持久化数据。"
+    ]
+}
