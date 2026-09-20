@@ -1,11 +1,11 @@
 {
-    "version": "0.121.2",
+    "version": "0.122.0",
     "description": "清风输入法（WindInput）",
     "homepage": "https://github.com/huanfeng/WindInput",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/huanfeng/WindInput/releases/download/v0.121.2/WindInput-Portable-0.121.2.zip",
-    "hash": "ed34591af09219c4c58560a4d31fc61091ca24d2999a5e3e4a5a01298c3fc4a7",
-    "extract_dir": "WindInput-0.121.2",
+    "url": "https://github.com/huanfeng/WindInput/releases/download/v0.122.0/WindInput-Portable-0.122.0.zip",
+    "hash": "abdaf25900911df76f230b2b4e09b2acd1f29b047f18b67b7cba6c0b6fa7769f",
+    "extract_dir": "WindInput-0.122.0",
     "persist": "userdata",
     "post_install": [
         "info 'Registering WindInput TSF and starting service...'",
