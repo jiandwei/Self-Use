@@ -9,16 +9,15 @@
             "hash": "b7e13cd0002c3550bbbd7306c3d6cbc99e2532255ea9b4cab4f099d8f0a81bde"
         }
     },
-    "extract_dir": "CentBrowser",
     "bin": [
         [
-            "Application\\chrome.exe",
+            "chrome.exe",
             "centbrowser"
         ]
     ],
     "shortcuts": [
         [
-            "Application\\chrome.exe",
+            "chrome.exe",
             "Cent Browser"
         ]
     ],
