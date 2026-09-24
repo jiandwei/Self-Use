@@ -1,0 +1,19 @@
+{
+    "version": "latest",
+    "description": "Pogget - 轻量、强大、灵活的文件管理和交互工具",
+    "homepage": "https://pogget.vilinko.com/",
+    "license": "Freeware",
+    "architecture": {
+        "64bit": {
+            "url": "https://down1.vilinko.com/download/pogget.zip",
+            "hash": "08B8D74AE50D8798A2CEAF6C7DE3E1A01144397F65C89B8EB56E9CCA79538B16"
+        }
+    },
+    "bin": "Pogget.exe",
+    "shortcuts": [
+        [
+            "Pogget.exe",
+            "Pogget"
+        ]
+    ]
+}
