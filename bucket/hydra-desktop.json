@@ -1,0 +1,37 @@
+{
+    "version": "0.6.1",
+    "description": "Hydra Download Manager - A fast, resilient, multi-source download manager and accelerator",
+    "homepage": "https://github.com/ja7ad/hydra",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/ja7ad/hydra/releases/download/v0.6.1/hydra-0.6.1-windows-portable-amd64.zip",
+            "hash": "38d6659307dc46a5ebfac2711f7f7724439177694fcc36decd4e61e60a169310"
+        }
+    },
+    "installer": {
+        "script": [
+            "if (Test-Path \"$dir\\HydraPortable\\HydraPortable.exe\") {",
+            "    Get-ChildItem \"$dir\\HydraPortable\" -Force | Move-Item -Destination $dir",
+            "    Remove-Item \"$dir\\HydraPortable\" -Recurse -Force",
+            "}"
+        ]
+    },
+    "shortcuts": [
+        [
+            "HydraPortable.exe",
+            "Hydra Download Manager"
+        ]
+    ],
+    "persist": "Data",
+    "checkver": {
+        "github": "https://github.com/ja7ad/hydra"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/ja7ad/hydra/releases/download/v$version/hydra-$version-windows-portable-amd64.zip"
+            }
+        }
+    }
+}
