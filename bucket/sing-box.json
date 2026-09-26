@@ -1,13 +1,13 @@
 {
-    "version": "1.14.1-reF1nd",
+    "version": "1.14.2-reF1nd",
     "description": "sing-box reF1nd build",
     "homepage": "https://github.com/reF1nd/sing-box-releases",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v1.14.1-reF1nd/sing-box-1.14.1-reF1nd-windows-amd64v3.zip",
-            "hash": "bbebd4fae9faac2081d260b424bc88fe6659b92c2d201d789eb72bbc898810d0",
-            "extract_dir": "sing-box-1.14.1-reF1nd-windows-amd64v3"
+            "url": "https://github.com/reF1nd/sing-box-releases/releases/download/v1.14.2-reF1nd/sing-box-1.14.2-reF1nd-windows-amd64v3.zip",
+            "hash": "7ea7ee15923d064ffb10a5463579f7c64a5c5990c8cfe3309ef0dabba213f4d5",
+            "extract_dir": "sing-box-1.14.2-reF1nd-windows-amd64v3"
         }
     },
     "pre_install": [
