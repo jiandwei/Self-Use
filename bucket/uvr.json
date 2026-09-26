@@ -1,0 +1,35 @@
+{
+    "version": "0.4.6",
+    "description": "An extremely fast R package and project manager, written in Rust — the R equivalent of uv for Python.",
+    "homepage": "https://github.com/nbafrank/uvr",
+    "license": "MIT",
+    "notes": [
+        "uvr data is persisted by Scoop.",
+        "Cache directory: '$persist_dir\\cache'",
+        "Managed R installations: '$persist_dir\\r\\versions'",
+        "Run 'uvr doctor' to inspect the active configuration."
+    ],
+    "url": "https://github.com/nbafrank/uvr/releases/download/v0.4.6/uvr-x86_64-pc-windows-msvc.zip",
+    "hash": "0038983b1e36d3f92ac0bd939d5d62268ece4b70bdbf81c5248eb4184c7edcf8",
+    "installer": {
+        "script": [
+            "New-Item -ItemType Directory -Force -Path \"$persist_dir\\cache\" | Out-Null",
+            "New-Item -ItemType Directory -Force -Path \"$persist_dir\\r\\versions\" | Out-Null"
+        ]
+    },
+    "env_set": {
+        "UVR_CACHE_DIR": "$persist_dir\\cache",
+        "UVR_R_INSTALL_DIR": "$persist_dir\\r\\versions"
+    },
+    "bin": "uvr.exe",
+    "checkver": {
+        "github": "https://github.com/nbafrank/uvr"
+    },
+    "autoupdate": {
+        "url": "https://github.com/nbafrank/uvr/releases/download/v$version/uvr-x86_64-pc-windows-msvc.zip",
+        "hash": {
+            "url": "https://github.com/nbafrank/uvr/releases/download/v$version/sha256sums.txt",
+            "regex": "$sha256\\s+uvr-x86_64-pc-windows-msvc\\.zip"
+        }
+    }
+}
