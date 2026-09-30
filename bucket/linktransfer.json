@@ -1,16 +1,16 @@
 {
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "A small CLI for sending files, folders, or text from one machine to another with a short code.",
     "homepage": "https://github.com/linksocks/linktransfer",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/linksocks/linktransfer/releases/download/v1.0.14/linktransfer-windows-amd64.exe",
-            "hash": "82f39005d3abb7e8b6b467edd4592d26b0467645d524c3bff4af27b46632bf8b"
+            "url": "https://github.com/linksocks/linktransfer/releases/download/v1.0.15/linktransfer-windows-amd64.exe",
+            "hash": "efe94e3a15e7775bee0b956bf45b41bd0d517c39fd038cb2f1698d9d28c6f34c"
         },
         "arm64": {
-            "url": "https://github.com/linksocks/linktransfer/releases/download/v1.0.14/linktransfer-windows-arm64.exe",
-            "hash": "4d274e1adadd305893ab94755c4126be36e710779255dc83c87c6fd3a6a8ea23"
+            "url": "https://github.com/linksocks/linktransfer/releases/download/v1.0.15/linktransfer-windows-arm64.exe",
+            "hash": "345cec5995cba89773bb90fc2beedb2233cf0cac27c8600cd5c97b5e40a10411"
         }
     },
     "pre_install": "Get-ChildItem \"$dir\\linktransfer-windows-*.exe\" | Rename-Item -NewName 'linktransfer.exe'",
