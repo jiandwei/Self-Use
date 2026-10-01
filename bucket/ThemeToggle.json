@@ -1,0 +1,15 @@
+{
+    "version": "1.6.0",
+    "description": "Fast, lightweight Windows light/dark theme switcher CLI.",
+    "homepage": "https://github.com/espensev/ThemeToggle",
+    "license": "Unlicense",
+    "url": "https://github.com/espensev/ThemeToggle/releases/download/v1.6.0/ThemeToggle-Portable.zip",
+    "hash": "26C2C776CFAED41A9B8CD6C8E09C21CBE54AC2DE4D667BDD1176781CC647F9E7",
+    "bin": "ThemeToggle.exe",
+    "checkver": {
+        "github": "https://github.com/espensev/ThemeToggle"
+    },
+    "autoupdate": {
+        "url": "https://github.com/espensev/ThemeToggle/releases/download/v$version/ThemeToggle-Portable.zip"
+    }
+}
