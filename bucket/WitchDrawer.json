@@ -1,12 +1,12 @@
 {
-    "version": "1.4.3",
+    "version": "1.4.4",
     "description": "轻量级 Windows 桌面文件收纳工具，基于原生 WPF 构建",
     "homepage": "https://github.com/witchscottishfoldcat/WitchDrawer",
     "license": "CC-BY-NC-SA-4.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/witchscottishfoldcat/WitchDrawer/releases/download/v1.4.3/WitchDrawer-v1.4.3-win-x64.zip",
-            "hash": "57535e039c9ec6ac3788b03c30ba55b02fc98a5cd9513def543f8a95d5ae0ec6"
+            "url": "https://github.com/witchscottishfoldcat/WitchDrawer/releases/download/v1.4.4/WitchDrawer-v1.4.4-win-x64.zip",
+            "hash": "9302e1a745703b67d71c7d6bf426187f9e9051f7422c991d253787b84f4492af"
         }
     },
     "shortcuts": [
