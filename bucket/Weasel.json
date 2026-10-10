@@ -1,10 +1,10 @@
 {
-    "version": "0.17.4.93.cc3c27b",
+    "version": "0.17.4.97.0536c53",
     "description": "Weasel (小狼毫) - fxliang Personal Build",
     "homepage": "https://github.com/fxliang/weasel",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/fxliang/weasel/releases/download/pblatest/weasel-0.17.4.93.cc3c27b-installer.exe#/weasel-installer.exe",
-    "hash": "0a9cb6df8e37cdbea9eb92e2ae7f4553449434143c14be0e8218d656c4fa8078",
+    "url": "https://github.com/fxliang/weasel/releases/download/pblatest/weasel-0.17.4.97.0536c53-installer.exe#/weasel-installer.exe",
+    "hash": "406aacdf4c6d0f2757a1d9c3ebff3c545d9fc22d2e827955a220507ce0e7f55b",
     "installer": {
         "script": [
             "$installer = Join-Path $dir 'weasel-installer.exe'",
