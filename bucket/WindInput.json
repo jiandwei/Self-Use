@@ -6,7 +6,7 @@
     "url": "https://github.com/huanfeng/WindInput/releases/download/v0.125.0/WindInput-Portable-0.125.0.zip",
     "hash": "a015c8c97b42fe3200e8918f8309a5c793d23b2e0945d59c1f6681a5b08adbd7",
     "extract_dir": "WindInput-0.125.0",
-    "persist": "localdata",
+    "persist": "userdata",
     "post_install": [
         "info 'Registering WindInput TSF and starting service...'",
         "$proc = Start-Process -FilePath \"$dir\\wind_portable.exe\" -ArgumentList '-start' -WorkingDirectory \"$dir\" -PassThru",
