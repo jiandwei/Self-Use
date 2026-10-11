@@ -1,0 +1,30 @@
+
+{
+    "version": "0.11.0",
+    "description": "基于 Qt 6 和 libmpv 的 Emby / Jellyfin 桌面客户端",
+    "homepage": "https://github.com/suhiymof/ReEmby",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/suhiymof/ReEmby/releases/download/v0.11.0/ReEmby-0.11.0-win-x64.7z",
+            "hash": "02e44fff580aae24bea5e163d326a37724507a0c48041775cb671321d464c69e"
+        }
+    },
+    "shortcuts": [
+        [
+            "ReEmby.exe",
+            "ReEmby"
+        ]
+    ],
+    "persist": "config",
+    "checkver": {
+        "github": "https://github.com/suhiymof/ReEmby"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/suhiymof/ReEmby/releases/download/v$version/ReEmby-$version-win-x64.7z"
+            }
+        }
+    }
+}
