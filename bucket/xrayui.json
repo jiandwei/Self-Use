@@ -1,0 +1,68 @@
+{
+    "version": "1.19",
+    "description": "Native Windows Xray-core client with chain proxy, subscriptions and TUN support",
+    "homepage": "https://github.com/PhoenixNil/XrayUI-dev",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/PhoenixNil/XrayUI-dev/releases/download/1.19/XrayUI-win-x64.zip",
+            "hash": "c5617c0eb3457fb29a4042ad5601bb28b92ba4342932dc2621e47f23d29849f1"
+        }
+    },
+    "pre_install": [
+        "if (!(Test-Path -LiteralPath \"$dir\\data\")) { New-Item -ItemType Directory -Path \"$dir\\data\" | Out-Null }"
+    ],
+    "shortcuts": [
+        [
+            "XrayUI-dev.exe",
+            "XrayUI"
+        ]
+    ],
+    "persist": "data",
+    "post_install": [
+        "$source = Join-Path $env:LOCALAPPDATA 'XrayUI'",
+        "$target = Join-Path $persist_dir 'data'",
+        "if (!(Test-Path -LiteralPath $source)) {",
+        "    New-Item -ItemType Junction -Path $source -Target $target -ErrorAction Stop | Out-Null",
+        "} elseif (!((Get-Item -LiteralPath $source -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) {",
+        "    if (!(Get-ChildItem -LiteralPath $target -Force | Select-Object -First 1)) {",
+        "        Get-ChildItem -LiteralPath $source -Force | Copy-Item -Destination $target -Recurse -Force -ErrorAction Stop",
+        "        $backup = 'XrayUI.scoop-backup-' + (Get-Date -Format 'yyyyMMddHHmmssfff')",
+        "        Rename-Item -LiteralPath $source -NewName $backup -ErrorAction Stop",
+        "        New-Item -ItemType Junction -Path $source -Target $target -ErrorAction Stop | Out-Null",
+        "        Write-Warning \"Previous XrayUI data was backed up at $env:LOCALAPPDATA\\$backup.\"",
+        "    } else {",
+        "        Write-Warning 'Existing LOCALAPPDATA XrayUI directory not linked because Scoop persist already has files. Back up and merge data manually.'",
+        "    }",
+        "} else {",
+        "    $link = Get-Item -LiteralPath $source -Force",
+        "    $linkedTarget = ([string]$link.Target).Replace('\\\\?\\', '').TrimEnd('\\')",
+        "    if ($linkedTarget -ine $target.TrimEnd('\\')) { Write-Warning 'Existing LOCALAPPDATA XrayUI junction targets another directory; leaving it unchanged.' }",
+        "}"
+    ],
+    "pre_uninstall": [
+        "if ($cmd -eq 'uninstall') {",
+        "    $linkPath = Join-Path $env:LOCALAPPDATA 'XrayUI'",
+        "    $item = Get-Item -LiteralPath $linkPath -Force -ErrorAction SilentlyContinue",
+        "    if ($item -and ($item.Attributes -band [IO.FileAttributes]::ReparsePoint)) {",
+        "        $actual = ([string]$item.Target).Replace('\\\\?\\', '').TrimEnd('\\')",
+        "        $expected = (Join-Path $persist_dir 'data').TrimEnd('\\')",
+        "        if ($actual -ieq $expected) { [IO.Directory]::Delete($linkPath) }",
+        "    }",
+        "}"
+    ],
+    "checkver": {
+        "github": "https://github.com/PhoenixNil/XrayUI-dev"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/PhoenixNil/XrayUI-dev/releases/download/$version/XrayUI-win-x64.zip"
+            }
+        }
+    },
+    "notes": [
+        "Data is stored in $persist_dir\\data; %LOCALAPPDATA%\\XrayUI points there through a junction.",
+        "Close XrayUI before Scoop updates; use Scoop rather than the application's built-in updater."
+    ]
+}
