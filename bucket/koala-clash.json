@@ -1,0 +1,30 @@
+{
+    "version": "1.5.0",
+    "description": "Koala Clash - a Mihomo GUI client for Windows",
+    "homepage": "https://github.com/coolcoala/koala-clash",
+    "license": "GPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/coolcoala/koala-clash/releases/download/1.5.0/Koala.Clash_x64-portable.7z",
+            "hash": "7f58f0ad776edc08e5a13d943ecb8e2a84dec63676441fc8d277e8f6eea7ef00"
+        }
+    },
+    "pre_install": "if (!(Test-Path \"$dir\\PORTABLE\")) { New-Item -ItemType File -Path \"$dir\\PORTABLE\" | Out-Null }",
+    "shortcuts": [
+        [
+            "Koala Clash.exe",
+            "Koala Clash"
+        ]
+    ],
+    "persist": "data",
+    "checkver": {
+        "github": "https://github.com/coolcoala/koala-clash"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/coolcoala/koala-clash/releases/download/$version/Koala.Clash_x64-portable.7z"
+            }
+        }
+    }
+}
