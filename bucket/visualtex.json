@@ -1,0 +1,39 @@
+{
+    "version": "1.2.7",
+    "description": "面向科研写作的可视化 LaTeX 公式编辑器，支持 Word/PowerPoint 集成（无本地 OCR 轻量版）",
+    "homepage": "https://github.com/paulhe666/visualtex",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/paulhe666/visualtex/releases/download/v1.2.7/VisualTeX_1.2.7_x64-no-ocr-setup.exe",
+            "hash": "6bfcde5b4e19899fb1510965b5657ab8b960312ec1ff6db698279efa891dfdeb"
+        }
+    },
+    "installer": {
+        "args": [
+            "/S",
+            "/D=$dir"
+        ]
+    },
+    "uninstaller": {
+        "file": "uninstall.exe",
+        "args": [
+            "/S"
+        ]
+    },
+    "bin": "visualtex.exe",
+    "checkver": {
+        "github": "https://github.com/paulhe666/visualtex"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/paulhe666/visualtex/releases/download/v$version/VisualTeX_$version_x64-no-ocr-setup.exe"
+            }
+        }
+    },
+    "notes": [
+        "此轻量版不包含本地 OCR 运行环境及模型，但保留 API OCR 功能。",
+        "原生安装器默认尝试配置 Word/PowerPoint 集成，可能需要管理员权限；安装或更新前请关闭 Office 程序。"
+    ]
+}
