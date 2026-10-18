@@ -1,39 +1,41 @@
 {
     "version": "1.2.7",
-    "description": "面向科研写作的可视化 LaTeX 公式编辑器，支持 Word/PowerPoint 集成（无本地 OCR 轻量版）",
+    "description": "面向科研写作的可视化 LaTeX 公式编辑器（无本地 OCR 轻量版，绿色解包）",
     "homepage": "https://github.com/paulhe666/visualtex",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/paulhe666/visualtex/releases/download/v1.2.7/VisualTeX_1.2.7_x64-no-ocr-setup.exe",
+            "url": "https://github.com/paulhe666/visualtex/releases/download/v1.2.7/VisualTeX_1.2.7_x64-no-ocr-setup.exe#/dl.7z",
             "hash": "6bfcde5b4e19899fb1510965b5657ab8b960312ec1ff6db698279efa891dfdeb"
         }
     },
-    "installer": {
-        "args": [
-            "/S",
-            "/D=$dir"
-        ]
-    },
-    "uninstaller": {
-        "file": "uninstall.exe",
-        "args": [
-            "/S"
-        ]
-    },
+    "pre_install": [
+        "$exe = Get-ChildItem -LiteralPath $dir -Filter 'visualtex.exe' -File -Recurse | Select-Object -First 1",
+        "if (-not $exe) { throw 'visualtex.exe was not found in the extracted NSIS package.' }",
+        "if ($exe.Directory.FullName -ne $dir) {",
+        "    Get-ChildItem -LiteralPath $exe.Directory.FullName -Force | Move-Item -Destination $dir -Force",
+        "}"
+    ],
     "bin": "visualtex.exe",
+    "shortcuts": [
+        [
+            "visualtex.exe",
+            "VisualTeX"
+        ]
+    ],
     "checkver": {
         "github": "https://github.com/paulhe666/visualtex"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/paulhe666/visualtex/releases/download/v$version/VisualTeX_$version_x64-no-ocr-setup.exe"
+                "url": "https://github.com/paulhe666/visualtex/releases/download/v$version/VisualTeX_$version_x64-no-ocr-setup.exe#/dl.7z"
             }
         }
     },
     "notes": [
-        "此轻量版不包含本地 OCR 运行环境及模型，但保留 API OCR 功能。",
-        "原生安装器默认尝试配置 Word/PowerPoint 集成，可能需要管理员权限；安装或更新前请关闭 Office 程序。"
+        "绿色安装：仅用 7-Zip 解包官方 NSIS 安装包，不执行安装器、卸载器或 Office 注册脚本。",
+        "该方式不会安装 Word/PowerPoint 原生加载项；如需 Office 集成，请使用官方安装程序。",
+        "应用启动后仍可能在当前用户的 AppData 目录保存设置和缓存；无 OCR 版本仅保留在线/API OCR 功能。"
     ]
 }
