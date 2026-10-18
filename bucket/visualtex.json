@@ -1,6 +1,6 @@
 {
     "version": "1.2.7",
-    "description": "面向科研写作的可视化 LaTeX 公式编辑器（无本地 OCR 轻量版，绿色解包）",
+    "description": "面向科研写作的可视化 LaTeX 公式编辑器（无本地 OCR，免安装解包版）",
     "homepage": "https://github.com/paulhe666/visualtex",
     "license": "MIT",
     "architecture": {
@@ -17,12 +17,6 @@
         "}"
     ],
     "bin": "visualtex.exe",
-    "shortcuts": [
-        [
-            "visualtex.exe",
-            "VisualTeX"
-        ]
-    ],
     "checkver": {
         "github": "https://github.com/paulhe666/visualtex"
     },
@@ -34,8 +28,9 @@
         }
     },
     "notes": [
-        "绿色安装：仅用 7-Zip 解包官方 NSIS 安装包，不执行安装器、卸载器或 Office 注册脚本。",
-        "该方式不会安装 Word/PowerPoint 原生加载项；如需 Office 集成，请使用官方安装程序。",
-        "应用启动后仍可能在当前用户的 AppData 目录保存设置和缓存；无 OCR 版本仅保留在线/API OCR 功能。"
+        "仅使用 7-Zip 解包官方 NSIS 安装包；不执行安装、卸载、Office 插件注册或自动创建开始菜单快捷方式。",
+        "注意：这并非完全纯绿色版。VisualTeX v1.2.7 启动时仍会写入 HKCU\\Software\\VisualTeX\\OfficeIntegration，并可能向用户 AppData 写入配置和 WebView 数据；Scoop manifest 无法禁止这些行为。",
+        "若要求无注册表和用户目录写入，必须由上游程序增加便携模式并重新编译；本 manifest 不会伪称支持这一能力。",
+        "无本地 OCR 资源，支持在线/API OCR。"
     ]
 }
