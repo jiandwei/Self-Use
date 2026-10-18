@@ -1,12 +1,12 @@
 {
-    "version": "1.2.7",
+    "version": "1.2.8",
     "description": "面向科研写作的可视化 LaTeX 公式编辑器（无本地 OCR，免安装解包版）",
     "homepage": "https://github.com/paulhe666/visualtex",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/paulhe666/visualtex/releases/download/v1.2.7/VisualTeX_1.2.7_x64-no-ocr-setup.exe#/dl.7z",
-            "hash": "6bfcde5b4e19899fb1510965b5657ab8b960312ec1ff6db698279efa891dfdeb"
+            "url": "https://github.com/paulhe666/visualtex/releases/download/v1.2.8/VisualTeX_1.2.8_x64-no-ocr-setup.exe#/dl.7z",
+            "hash": "627dd98d674c2260d42a58dc57b58e1aeb5e44a3984f49c31a9e729af315509d"
         }
     },
     "pre_install": [
