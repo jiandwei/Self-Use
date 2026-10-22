@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "description": "Open-source, offline-first Windows password manager built with WinUI 3",
+    "homepage": "https://github.com/pexatar/PassKey",
+    "license": "GPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/pexatar/PassKey/releases/download/v2.0.0/PassKey-Portable-x64.zip",
+            "hash": "1d1636f6f52ca699529cfbcf39b125fe652bf0d53ccb83e398d93c373c848a45"
+        }
+    },
+    "shortcuts": [
+        [
+            "PassKey.Desktop.exe",
+            "PassKey"
+        ]
+    ],
+    "notes": [
+        "Requires Windows 10 1809 or later (x64) and Windows App Runtime 1.8.",
+        "The vault is stored at %LOCALAPPDATA%\\PassKey\\passkey.db, not beside the portable executable. Back up that directory before reinstalling Windows."
+    ],
+    "checkver": {
+        "github": "https://github.com/pexatar/PassKey"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/pexatar/PassKey/releases/download/v$version/PassKey-Portable-x64.zip"
+            }
+        }
+    }
+}
