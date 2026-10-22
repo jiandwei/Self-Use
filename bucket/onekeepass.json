@@ -25,5 +25,15 @@
                 "url": "https://github.com/OneKeePass/desktop/releases/download/v$version/OneKeePass_$version_Windows_x64_Portable.zip"
             }
         }
-    }
+    },
+    "pre_install": [
+        "if (!(Test-Path -LiteralPath (Join-Path $dir 'OneKeePass.exe'))) {",
+        "    $exe = Get-ChildItem -LiteralPath $dir -Recurse -File -Filter 'OneKeePass.exe' | Select-Object -First 1",
+        "    if (!$exe) { throw 'OneKeePass.exe was not found in the portable archive' }",
+        "    $source = $exe.Directory.FullName",
+        "    Get-ChildItem -LiteralPath $source -Force | Move-Item -Destination $dir -Force",
+        "    Remove-Item -LiteralPath $source -Recurse -Force",
+        "}",
+        "if (!(Test-Path -LiteralPath (Join-Path $dir '.portable'))) { throw 'Portable marker (.portable) was not found' }"
+    ]
 }
