@@ -1,0 +1,29 @@
+{
+    "version": "0.27.0",
+    "description": "Modern KeePass-compatible password manager with a portable Windows build",
+    "homepage": "https://github.com/OneKeePass/desktop",
+    "license": "GPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/OneKeePass/desktop/releases/download/v0.27.0/OneKeePass_0.27.0_Windows_x64_Portable.zip",
+            "hash": "0cb67af303cc2f7695a2a085ffdd430ccb3340c96a7ebf26ef6eaa6eb258b54f"
+        }
+    },
+    "shortcuts": [
+        [
+            "OneKeePass.exe",
+            "OneKeePass"
+        ]
+    ],
+    "persist": "onekeepass-data",
+    "checkver": {
+        "github": "https://github.com/OneKeePass/desktop"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/OneKeePass/desktop/releases/download/v$version/OneKeePass_$version_Windows_x64_Portable.zip"
+            }
+        }
+    }
+}
