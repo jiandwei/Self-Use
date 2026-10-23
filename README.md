@@ -30,9 +30,9 @@ Scoop exposes `sing-box-manage` on PATH using its shim directory. The manager sc
 
 Installing or updating sing-box automatically attempts to register (or refresh) a Windows Scheduled Task named `sing-box`. Windows requests administrator authorization (UAC) if required. Cancelling UAC or encountering registration errors prints a warning without failing the Scoop installation. You can retry later in an elevated PowerShell session using `sing-box-manage install`.
 
-Configuration is expected at `<scoop-root>\persist\sing-box\config\config.json`. If the file exists during installation, it is checked using the newly installed sing-box executable before task registration. A missing config produces a warning, and the task is registered but cannot run successfully until valid configuration is added; run `sing-box-manage install` after creating the config to validate it. The manager script is persisted, and the prior version is backed up before an upgrade replaces it.
+Configuration is expected at `<scoop-root>\persist\sing-box\config\config.json`. If the file exists during installation, it is checked using the newly installed sing-box executable before task registration. A missing config produces a warning, and the task is registered but cannot run successfully until valid configuration is added; run `sing-box-manage install` after creating the config to validate it. The manager script is persisted, and the prior version is backed up before an upgrade replaces it. After updating sing-box, the version 4 manager replaces the old version 3 script while retaining a timestamped backup.
 
-To manage the task, open PowerShell as Administrator:
+To manage the task, use a normal PowerShell session. `status` does not require elevation. The `install`, `uninstall`, `start`, `stop`, and `restart` commands automatically request administrator approval through Windows UAC when necessary:
 
 ```powershell
 sing-box-manage status
@@ -43,6 +43,6 @@ sing-box-manage install
 sing-box-manage uninstall
 ```
 
-The task runs the Scoop `current` version of `sing-box.exe` **as SYSTEM**, at system startup, with highest privileges and a one-minute restart interval after failure (up to 999 retries). `install` refreshes the existing task instead of creating duplicates. The installation hook registers the task, but does not start it immediately; run `sing-box-manage start` or reboot. The task action executes `sing-box.exe` directly, not a writable PowerShell script as SYSTEM.
+If UAC is cancelled, the management command fails with an explanatory error; it never bypasses Windows authorization. If the elevated action fails, the original command reports its nonzero exit code. To apply the updated manager on an existing installation, run `scoop update sing-box` (or `scoop update sing-box -f` when the installed version is already current).\n\nThe task runs the Scoop `current` version of `sing-box.exe` **as SYSTEM**, at system startup, with highest privileges and a one-minute restart interval after failure (up to 999 retries). `install` refreshes the existing task instead of creating duplicates. The installation hook registers the task, but does not start it immediately; run `sing-box-manage start` or reboot. The task action executes `sing-box.exe` directly, not a writable PowerShell script as SYSTEM.
 
 **Updates:** stop sing-box before `scoop update sing-box`; the installation hook will attempt to update the scheduled task automatically. If authorization is declined, it can be registered manually afterward. This does not use WinSW or automatically remove a pre-existing WinSW service. Keep any legacy service stopped to avoid running two copies.
