@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Position=0)]
-    [ValidateSet('install', 'uninstall', 'start', 'stop', 'restart', 'status')]
+    [ValidateSet('install', 'uninstall', 'start', 'stop', 'restart', 'status', 'check')]
     [string]$Action = 'status',
     [string]$ValidationExe = ''
 )
@@ -54,7 +54,7 @@ function Invoke-ElevatedManagementAction {
     }
 }
 
-if ($Action -ne 'status' -and !(Test-Administrator)) {
+if ($Action -notin @('status', 'check') -and !(Test-Administrator)) {
     Invoke-ElevatedManagementAction
     return
 }
@@ -104,6 +104,13 @@ function Wait-UntilStopped {
 }
 
 switch ($Action) {
+    'check' {
+        Assert-ConfigFiles
+        if (!(Test-Path -LiteralPath $ExePath -PathType Leaf)) { throw "sing-box executable not found: $ExePath" }
+        & $ExePath -D $DataDir -C $ConfigDir check
+        if ($LASTEXITCODE -ne 0) { throw "Config check failed (exit code $LASTEXITCODE)." }
+        Write-Host "Config is valid: $ConfigDir"
+    }
     'install' {
         Assert-ConfigFiles
         $checkExe = $ExePath
