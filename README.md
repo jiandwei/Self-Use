@@ -26,19 +26,23 @@ Do not enable Scoop's global `ignore_running_processes` setting to fix this: it 
 
 ## sing-box scheduled startup (PowerShell manager)
 
-The Scoop manifest exposes `sing-box-manage` through the normal Scoop shims directory on PATH. The management script resides in `<scoop-root>\persist\sing-box\sing-box.ps1`. On upgrade, an earlier manager is backed up before being replaced with version 2 of the task manager.
+Scoop exposes `sing-box-manage` on PATH using its shim directory. The manager script is at `<scoop-root>\persist\sing-box\sing-box.ps1`.
 
-Put the configuration in `<scoop-root>\persist\sing-box\config\config.json`. Start an **elevated PowerShell** session after installing or updating and use:
+Installing or updating sing-box automatically attempts to register (or refresh) a Windows Scheduled Task named `sing-box`. Windows requests administrator authorization (UAC) if required. Cancelling UAC or encountering registration errors prints a warning without failing the Scoop installation. You can retry later in an elevated PowerShell session using `sing-box-manage install`.
+
+Configuration is expected at `<scoop-root>\persist\sing-box\config\config.json`. If the file exists during installation, it is checked using the newly installed sing-box executable before task registration. A missing config produces a warning, and the task is registered but cannot run successfully until valid configuration is added; run `sing-box-manage install` after creating the config to validate it. The manager script is persisted, and the prior version is backed up before an upgrade replaces it.
+
+To manage the task, open PowerShell as Administrator:
 
 ```powershell
-sing-box-manage install
-sing-box-manage start
 sing-box-manage status
-sing-box-manage restart
+sing-box-manage start
 sing-box-manage stop
+sing-box-manage restart
+sing-box-manage install
 sing-box-manage uninstall
 ```
 
-`install` validates the configuration with `sing-box check` and registers a Windows Scheduled Task named `sing-box` at startup. The task runs `sing-box.exe` from Scoop's `current` path **as SYSTEM**, with highest privileges, no execution time limit, and restart-on-failure at one-minute intervals (up to 999 attempts). Running `install` again refreshes the task's executable/config paths after an upgrade. Run `start` to launch it immediately; the task also starts at the next system boot. `status` shows task state and last result.
+The task runs the Scoop `current` version of `sing-box.exe` **as SYSTEM**, at system startup, with highest privileges and a one-minute restart interval after failure (up to 999 retries). `install` refreshes the existing task instead of creating duplicates. The installation hook registers the task, but does not start it immediately; run `sing-box-manage start` or reboot. The task action executes `sing-box.exe` directly, not a writable PowerShell script as SYSTEM.
 
-The task runs the executable directly rather than executing a writable management script as SYSTEM. Stop the task before `scoop update sing-box` and run `sing-box-manage install` again afterward to revalidate the configuration. This does not use WinSW, remove any old WinSW service, or automatically install a task as part of Scoop installation. `uninstall` removes only the scheduled task; it does not remove Scoop's sing-box installation. Do not keep an old WinSW service running at the same time.
+**Updates:** stop sing-box before `scoop update sing-box`; the installation hook will attempt to update the scheduled task automatically. If authorization is declined, it can be registered manually afterward. This does not use WinSW or automatically remove a pre-existing WinSW service. Keep any legacy service stopped to avoid running two copies.
