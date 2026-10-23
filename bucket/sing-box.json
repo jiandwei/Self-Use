@@ -71,7 +71,7 @@
         "    $outputFile = Join-Path $logDir ('manage-' + [guid]::NewGuid().ToString('N') + '.log')",
         "    $escapedOutput = $outputFile.Replace(\"'\", \"''\")",
         "    # Capture all streams in the elevated process; keep output and exit status visible.",
-        "    $command = \"try { & '$escapedScript' -Action '$Action' -ValidationExe '$escapedValidationExe' *> '$escapedOutput'; exit 0 } catch { (`$_ | Out-String) | Out-File -LiteralPath '$escapedOutput' -Encoding UTF8 -Append; exit 1 }\"",
+        "    $command = \"try { & '$escapedScript' -Action '$Action' -ValidationExe '$escapedValidationExe' *>&1 | Out-File -LiteralPath '$escapedOutput' -Encoding UTF8; exit 0 } catch { (`$_ | Out-String) | Out-File -LiteralPath '$escapedOutput' -Encoding UTF8 -Append; exit 1 }\"",
         "    $encodedCommand = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($command))",
         "    $powershell = Join-Path $PSHOME 'powershell.exe'",
         "    if (!(Test-Path -LiteralPath $powershell -PathType Leaf)) {",
