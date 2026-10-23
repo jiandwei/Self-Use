@@ -23,6 +23,7 @@
         "\"@",
         "Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', $script",
         "$scriptPath = Join-Path $persist_dir 'sing-box.ps1'",
+        "if (!(Test-Path -LiteralPath $scriptPath)) {",
         "$scriptContent = @'",
         "param(",
         "    [ValidateSet('start', 'stop', 'restart', 'status')]",
@@ -31,8 +32,8 @@
         "",
         "$ErrorActionPreference = 'Stop'",
         "$persistDir = $PSScriptRoot",
-        "$scoopRoot = Split-Path (Split-Path $persistDir -Parent) -Parent",
-        "$exe = Join-Path $scoopRoot 'apps\\sing-box\\current\\sing-box.exe'",
+        "$appsDir = Split-Path (Split-Path $persistDir -Parent) -Parent",
+        "$exe = Join-Path $appsDir 'sing-box\\current\\sing-box.exe'",
         "$config = Join-Path $persistDir 'config\\config.json'",
         "$pidFile = Join-Path $persistDir 'sing-box.pid'",
         "$logDir = Join-Path $persistDir 'logs'",
@@ -101,7 +102,8 @@
         "}",
         "'@",
         "Set-Content -LiteralPath $scriptPath -Value $scriptContent -Encoding UTF8",
-        "info \"sing-box launcher saved to $scriptPath (start/stop/restart/status).\""
+        "info \"sing-box launcher saved to $scriptPath (start/stop/restart/status).\"",
+        "}"
     ],
     "pre_uninstall": [
         "$ruleName = 'sing-box Scoop'",
