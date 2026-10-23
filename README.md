@@ -47,6 +47,7 @@ The manager is available via the Scoop PATH shim:
 
 ```powershell
 sing-box-manage status
+sing-box-manage check
 sing-box-manage install
 sing-box-manage start
 sing-box-manage restart
@@ -54,7 +55,7 @@ sing-box-manage stop
 sing-box-manage uninstall
 ```
 
-All mutating operations request UAC automatically; status only requests UAC when necessary to verify a task invisible to the standard user. Installation checks configuration and verifies that the task exists after registering. Task errors are returned to the calling console, rather than merely reporting that the elevated process exited.
+The new check command validates all JSON config files without UAC. Mutating operations request UAC automatically; status only requests UAC when necessary to verify a task invisible to the standard user. Installation checks configuration and verifies that the task exists after registering. Task errors are returned to the calling console, rather than merely reporting that the elevated process exited.
 
 The task starts **at system boot** as SYSTEM, using the Scoop current executable path, without WinSW. Task Scheduler retries a failing process at one-minute intervals (up to 999 attempts). Registration does not start the task immediately; use sing-box-manage start once, or reboot. Stop it before running scoop update sing-box -f; the installation hook will refresh the task after the update.
 
