@@ -24,27 +24,38 @@ scoop update windinput
 Do not enable Scoop's global `ignore_running_processes` setting to fix this: it bypasses protection for all applications.
 
 
-## sing-box scheduled startup (PowerShell manager)
+## sing-box on Windows: startup and persistent configuration
 
-Scoop exposes `sing-box-manage` on PATH using its shim directory. The manager script is at `<scoop-root>\persist\sing-box\sing-box.ps1`.
+The Scoop manifest keeps the binary under <scoop-root>\apps\sing-box\current and stores configuration and runtime data in two persistent directories:
 
-Installing or updating sing-box automatically attempts to register (or refresh) a Windows Scheduled Task named `sing-box`. Windows requests administrator authorization (UAC) if required. Cancelling UAC or encountering registration errors prints a warning without failing the Scoop installation. You can retry later in an elevated PowerShell session using `sing-box-manage install`.
+    <scoop-root>\persist\sing-box\config\config.json
+    <scoop-root>\persist\sing-box\data\
 
-Configuration is expected at `<scoop-root>\persist\sing-box\config\config.json`. If the file exists during installation, it is checked using the newly installed sing-box executable before task registration. A missing config produces a warning, and the task is registered but cannot run successfully until valid configuration is added; run `sing-box-manage install` after creating the config to validate it. The manager script is persisted, and the prior version is backed up before an upgrade replaces it. After updating sing-box, the version 5 manager replaces older generated scripts while retaining a timestamped backup.
+The task launches sing-box with its built-in configuration and working-directory flags:
 
-To manage the task, use a normal PowerShell session. `status` first tries without elevation; if the SYSTEM task is not visible to the current user, it requests UAC to verify instead of incorrectly reporting that the task does not exist. The `install`, `uninstall`, `start`, `stop`, and `restart` commands automatically request UAC when necessary:
+    sing-box -D "<scoop-root>\persist\sing-box\data" -C "<scoop-root>\persist\sing-box\config" run
+
+The -C option reads the JSON configuration files in config by filename order (a single config.json works as before); -D keeps relative runtime files under data across Scoop upgrades. Do not keep extra .json backup files in the config directory: sing-box may load them too. Configuration is checked using the **same** -C / -D flags before registration.
+
+### Installation and control
+
+After installing or updating sing-box with Scoop, the manifest copies the readable manager source from scripts/sing-box-manage.ps1 in this bucket to persist/sing-box/sing-box.ps1. A changed existing manager is backed up before replacement; no longer is the entire PowerShell source embedded in the JSON manifest.
+
+If the configuration directory contains at least one .json file, Scoop tries to **register or refresh** the \sing-box Windows Scheduled Task automatically, asking for Windows UAC consent where needed. If there is no config file, the task registration is skipped with a warning rather than installing a boot task that will immediately fail. Add config.json, then register manually with the command below. A cancelled UAC prompt will not abort the Scoop installation.
+
+The manager is available via the Scoop PATH shim:
 
 ```powershell
 sing-box-manage status
-sing-box-manage start
-sing-box-manage stop
-sing-box-manage restart
 sing-box-manage install
+sing-box-manage start
+sing-box-manage restart
+sing-box-manage stop
 sing-box-manage uninstall
 ```
 
-When a management action runs elevated, its output and errors are relayed to the invoking console and the temporary log is deleted. An installation is considered successful only after the registered task is queried again as administrator. Cancelling UAC or a failed task registration generates an error rather than a misleading success message. To apply the updated manager on an existing installation, run `scoop update sing-box` (or `scoop update sing-box -f` when the installed version is already current).
+All mutating operations request UAC automatically; status only requests UAC when necessary to verify a task invisible to the standard user. Installation checks configuration and verifies that the task exists after registering. Task errors are returned to the calling console, rather than merely reporting that the elevated process exited.
 
-The task runs the Scoop `current` version of `sing-box.exe` **as SYSTEM**, at system startup, with highest privileges and a one-minute restart interval after failure (up to 999 retries). `install` refreshes the existing task instead of creating duplicates. The installation hook registers the task, but does not start it immediately; run `sing-box-manage start` or reboot. The task action executes `sing-box.exe` directly, not a writable PowerShell script as SYSTEM.
+The task starts **at system boot** as SYSTEM, using the Scoop current executable path, without WinSW. Task Scheduler retries a failing process at one-minute intervals (up to 999 attempts). Registration does not start the task immediately; use sing-box-manage start once, or reboot. Stop it before running scoop update sing-box -f; the installation hook will refresh the task after the update.
 
-**Updates:** stop sing-box before `scoop update sing-box`; the installation hook will attempt to update the scheduled task automatically. If authorization is declined, it can be registered manually afterward. This does not use WinSW or automatically remove a pre-existing WinSW service. Keep any legacy service stopped to avoid running two copies.
+**Security:** A SYSTEM task executing a Scoop binary under a user-writable directory has a privilege-escalation risk. This setup retains the prior SYSTEM behavior for compatibility with privileged TUN configurations. Use this only on a trusted single-user installation; for multi-user systems, use an administrator-protected executable/configuration location or a lower-privilege task instead. Do not leave a separate WinSW service running.
