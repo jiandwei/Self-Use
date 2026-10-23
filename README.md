@@ -22,3 +22,20 @@ scoop update windinput
 ```
 
 Do not enable Scoop's global `ignore_running_processes` setting to fix this: it bypasses protection for all applications.
+
+
+## sing-box PowerShell launcher
+
+The sing-box Scoop manifest creates a launcher at \`$env:SCOOP\\persist\\sing-box\\sing-box.ps1\` (default Scoop location: \`$env:USERPROFILE\\scoop\\persist\\sing-box\\sing-box.ps1\`). The script is retained across app upgrades and is not overwritten if already present.
+
+Put your sing-box configuration at \`$env:USERPROFILE\\scoop\\persist\\sing-box\\config\\config.json\` before starting. Then run:
+
+\`\`\`powershell
+$launcher = "$env:USERPROFILE\scoop\persist\sing-box\sing-box.ps1"
+& $launcher start
+& $launcher status
+& $launcher restart
+& $launcher stop
+\`\`\`
+
+The launcher runs the current Scoop version of \`sing-box.exe\` directly via PowerShell, without WinSW or a Windows service. It keeps a PID record and standard-output/error logs in the persistent folder (\`logs\`), and stops only the process it started. It does **not** set up automatic startup, and does not migrate or remove any previously installed WinSW service. If your configuration uses TUN or other privileged networking features, start PowerShell with the necessary permissions. Stop sing-box before upgrading.
