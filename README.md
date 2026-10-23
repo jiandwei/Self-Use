@@ -22,3 +22,27 @@ scoop update windinput
 ```
 
 Do not enable Scoop's global `ignore_running_processes` setting to fix this: it bypasses protection for all applications.
+
+
+## sing-box scheduled startup (PowerShell manager)
+
+Scoop exposes `sing-box-manage` on PATH using its shim directory. The manager script is at `<scoop-root>\persist\sing-box\sing-box.ps1`.
+
+Installing or updating sing-box automatically attempts to register (or refresh) a Windows Scheduled Task named `sing-box`. Windows requests administrator authorization (UAC) if required. Cancelling UAC or encountering registration errors prints a warning without failing the Scoop installation. You can retry later in an elevated PowerShell session using `sing-box-manage install`.
+
+Configuration is expected at `<scoop-root>\persist\sing-box\config\config.json`. If the file exists during installation, it is checked using the newly installed sing-box executable before task registration. A missing config produces a warning, and the task is registered but cannot run successfully until valid configuration is added; run `sing-box-manage install` after creating the config to validate it. The manager script is persisted, and the prior version is backed up before an upgrade replaces it.
+
+To manage the task, open PowerShell as Administrator:
+
+```powershell
+sing-box-manage status
+sing-box-manage start
+sing-box-manage stop
+sing-box-manage restart
+sing-box-manage install
+sing-box-manage uninstall
+```
+
+The task runs the Scoop `current` version of `sing-box.exe` **as SYSTEM**, at system startup, with highest privileges and a one-minute restart interval after failure (up to 999 retries). `install` refreshes the existing task instead of creating duplicates. The installation hook registers the task, but does not start it immediately; run `sing-box-manage start` or reboot. The task action executes `sing-box.exe` directly, not a writable PowerShell script as SYSTEM.
+
+**Updates:** stop sing-box before `scoop update sing-box`; the installation hook will attempt to update the scheduled task automatically. If authorization is declined, it can be registered manually afterward. This does not use WinSW or automatically remove a pre-existing WinSW service. Keep any legacy service stopped to avoid running two copies.
