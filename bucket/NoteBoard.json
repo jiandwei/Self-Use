@@ -1,0 +1,29 @@
+{
+    "version": "0.6.5",
+    "description": "本地优先的跨平台笔记、白板和知识工作台",
+    "homepage": "https://github.com/CrazyFigure/NoteBoard",
+    "license": "AGPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/CrazyFigure/NoteBoard/releases/download/v0.6.5/NoteBoard_0.6.5_windows_x64_portable.exe#/NoteBoard.exe",
+            "hash": "12edfd5cf532229d0c059e3008f0bef0df3651b53f2c19ba4bfc6cc7354ed1f2"
+        }
+    },
+    "shortcuts": [
+        [
+            "NoteBoard.exe",
+            "NoteBoard"
+        ]
+    ],
+    "notes": "Windows 10 1809+，需要 WebView2。免安装版与安装版共用 %APPDATA%\\NoteBoard，数据不随 Scoop 卸载而删除。",
+    "checkver": {
+        "github": "https://github.com/CrazyFigure/NoteBoard"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/CrazyFigure/NoteBoard/releases/download/v$version/NoteBoard_$version_windows_x64_portable.exe#/NoteBoard.exe"
+            }
+        }
+    }
+}
