@@ -12,7 +12,18 @@
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\config\")) {",
         "    New-Item -ItemType Directory -Path \"$persist_dir\\config\" -Force | Out-Null",
-        "}"
+        "}",
+        "$managerWrapper = Join-Path $dir 'sing-box-manage.ps1'",
+        "$wrapperScript = @'",
+        "$ErrorActionPreference = 'Stop'",
+        "$scoopRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent",
+        "$manager = Join-Path $scoopRoot 'persist\\sing-box\\sing-box.ps1'",
+        "if (!(Test-Path -LiteralPath $manager -PathType Leaf)) {",
+        "    throw \"sing-box management script not found: $manager. Reinstall or update sing-box.\"",
+        "}",
+        "& $manager @args",
+        "'@",
+        "Set-Content -LiteralPath $managerWrapper -Value $wrapperScript -Encoding UTF8"
     ],
     "post_install": [
         "$ruleName = 'sing-box Scoop'",
@@ -110,7 +121,13 @@
         "$script = \"Get-NetFirewallRule -DisplayName '$ruleName' -ErrorAction SilentlyContinue | Remove-NetFirewallRule -ErrorAction SilentlyContinue\"",
         "Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', $script"
     ],
-    "bin": "sing-box.exe",
+    "bin": [
+        "sing-box.exe",
+        [
+            "sing-box-manage.ps1",
+            "sing-box-manage"
+        ]
+    ],
     "persist": "config",
     "checkver": {
         "github": "https://github.com/reF1nd/sing-box-releases",
