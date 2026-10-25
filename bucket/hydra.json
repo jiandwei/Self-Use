@@ -1,15 +1,15 @@
 {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Hydra Download Manager CLI - Fast, resilient, multi-source file retriever and download accelerator",
     "homepage": "https://github.com/ja7ad/hydra",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ja7ad/hydra/releases/download/v1.1.0/hydra-cli-1.1.0-windows-amd64.zip",
-            "hash": "74aef5af6538c276b11d93886ca297bb26c642079951676d307dd78ab983c6a6"
+            "url": "https://github.com/ja7ad/hydra/releases/download/v1.2.0/hydra-cli-1.2.0-windows-amd64.zip",
+            "hash": "6c356f242a8718328c6f949669198286884fbbac3bbaa39014d90b59525e4f02"
         }
     },
-    "extract_dir": "hydra-cli-1.1.0-windows-amd64",
+    "extract_dir": "hydra-cli-1.2.0-windows-amd64",
     "bin": [
         "hydra.exe",
         [
