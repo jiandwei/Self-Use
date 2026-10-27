@@ -1,12 +1,12 @@
 {
-    "version": "0.6.7",
+    "version": "0.6.8",
     "description": "本地优先的跨平台笔记、白板和知识工作台",
     "homepage": "https://github.com/CrazyFigure/NoteBoard",
     "license": "AGPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/CrazyFigure/NoteBoard/releases/download/v0.6.7/NoteBoard_0.6.7_windows_x64_portable.exe#/NoteBoard.exe",
-            "hash": "5f1f7893511197962baad180ed2501509e38315c620c97c565cb1c07424fe94e"
+            "url": "https://github.com/CrazyFigure/NoteBoard/releases/download/v0.6.8/NoteBoard_0.6.8_windows_x64_portable.exe#/NoteBoard.exe",
+            "hash": "ef8eab0a104dab85552cca5882eee7445a90e809e4a66fd2aa6ded40b373c148"
         }
     },
     "shortcuts": [
